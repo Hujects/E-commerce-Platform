@@ -1,8 +1,12 @@
-import BestSellerCard from "./components/UIKIT/BestSellerCard";
+import MainProductCard from "./components/UIKIT/MainProductCard";
+import TitleCard from "./components/UIKIT/TitleCard";
+import TitleCetegoryPriceCard from "./components/UIKIT/TitleCetegoryPriceCard";
 function App() {
   return (
     <div className="flex justify-center items-center w-full h-screen">
-      <BestSellerCard />
+      {/* <TitleCetegoryPriceCard /> */}
+      {/* <TitleCard /> */}
+      <MainProductCard />
     </div>
   );
 }

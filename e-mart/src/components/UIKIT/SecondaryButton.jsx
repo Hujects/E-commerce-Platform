@@ -13,24 +13,7 @@ and "order now" tahoel ekta primary and ekta
  ================================================*/
 export default function SecondaryButton({ BtnTxt}) {
   return (
-    <button
-      className="
-        bg-[var(--white)]
-        px-[15px]
-        py-[8px]
-        text-[var(--salmon-pink)]
-        text-[var(--fs-9)]
-        font-[var(--weight-700)]
-        border
-        border-[var(--salmon-pink)]
-        rounded-[var(--border-radius-medium)]
-        transition-all
-        duration-200
-        hover:bg-[var(--salmon-pink)]
-        hover:text-[var(--white)]
-        hover:cursor-pointer
-      "
-    >
+    <button className="bg-[var(--white)] px-[15px] py-[8px] text-[var(--salmon-pink)] text-[var(--fs-9)] font-[var(--weight-700)] border border-[var(--salmon-pink)] rounded-[var(--border-radius-medium)] transition-all duration-[var(--transition-timing)] ease-in-out hover:bg-[var(--salmon-pink)] hover:text-[var(--white)] hover:cursor-pointer">
       {BtnTxt}
     </button>
   );
