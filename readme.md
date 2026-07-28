@@ -1,4 +1,4 @@
-# 🛒 Anon E-Commerce Platform
+# 🛒 E-Commerce Platform
 
 A modern **multi-vendor e-commerce platform** built to provide a complete online shopping experience with buyer, seller, and admin management systems.
 
