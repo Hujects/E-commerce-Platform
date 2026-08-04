@@ -8,8 +8,11 @@ function SecondHeader() {
                         <div className='logo'>
                             <p className="text-3xl font-bold">Hujects</p>
                         </div>
-                        <section className="searchBox">
-                            <input type="text" className="p-1 border rounded" />
+                        <section className="searchBox w-full flex justify-center relative">
+                            <input type="text" className="p-2 border rounded w-[80%] " />
+                            <button className="search_btn  text-white p-2 rounded absolute right-[11%] top-0 z-10">
+                                <i class="bi bi-search text-black hover:text-red-500"></i>
+                            </button>
                         </section>
                         <section className="buttons_nav">
                             <div className="flex gap-5 text-3xl">
@@ -28,4 +31,4 @@ function SecondHeader() {
     )
 }
 
-export default SecondHeader
+export default SecondHeader;
