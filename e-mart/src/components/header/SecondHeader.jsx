@@ -2,9 +2,9 @@
 function SecondHeader() {
     return (
         <>
-            <section className="mainbody w-[90%] m-t-2">
+            <section className="mainbody w-[90%] py-4 border-b-1 border-gray-400 pb-2">
                 <div>
-                    <div className="flex justify-between h-full items-center">
+                    <div className="flex justify-between h-full">
                         <div className='logo'>
                             <p className="text-3xl font-bold">Hujects</p>
                         </div>
@@ -16,7 +16,7 @@ function SecondHeader() {
                         </section>
                         <section className="buttons_nav">
                             <div className="flex gap-5 text-3xl">
-                                <div>
+                                <div className="hover:cursor-pointer">
                                     <i class="bi bi-person-fill"></i>
                                 </div>
                                 <div>

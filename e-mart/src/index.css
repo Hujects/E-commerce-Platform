@@ -1,5 +1,30 @@
 @import "tailwindcss";
 
+@layer utilities {
+    .nav-hover {
+         position: relative;
+  padding-bottom: 0.25rem;
+  color: #374151;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 100%;
+    background-color: theme(colors.pink.400);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+  
+  &:hover::after {
+    transform: scaleX(1);
+  }
+    }
+};
+
 
 :root{
 

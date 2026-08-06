@@ -1,8 +1,8 @@
 
 function TopHeader() {
     return (
-        <div className="w-[90%]">
-        <div className="flex justify-between m-b-2">
+        <div className="w-[90%] m-2 border-b-1 border-gray-400 pb-2">
+        <div className="flex justify-between ">
             <section className="social_links">
                 <div className="flex gap-3">
                     <div className="w-7 h-7 bg-gray-400 rounded hover:text-white hover:bg-red-500 flex justify-center items-center">
