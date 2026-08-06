@@ -1,12 +1,14 @@
 import MainProductCard from "./components/UIKIT/MainProductCard";
 import TitleCard from "./components/UIKIT/TitleCard";
 import TitleCetegoryPriceCard from "./components/UIKIT/TitleCetegoryPriceCard";
+import Header from "./components/header/Header";
 function App() {
   return (
-    <div className="flex justify-center items-center w-full h-screen">
+    <div className="w-full h-screen">
       {/* <TitleCetegoryPriceCard /> */}
       {/* <TitleCard /> */}
-      <MainProductCard />
+      {/* <MainProductCard /> */}
+      <Header/>
     </div>
   );
 }
