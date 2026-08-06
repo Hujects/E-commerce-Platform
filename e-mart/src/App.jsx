@@ -1,16 +1,8 @@
-import MainProductCard from "./components/UIKIT/MainProductCard";
-import TitleCard from "./components/UIKIT/TitleCard";
-import TitleCetegoryPriceCard from "./components/UIKIT/TitleCetegoryPriceCard";
-import Header from "./components/header/Header";
-import Navbar from './components/Navbar/Navbar';
+import Home from './pages/Home/Home';
 function App() {
   return (
     <div className="w-full h-screen">
-      {/* <TitleCetegoryPriceCard /> */}
-      {/* <TitleCard /> */}
-      {/* <MainProductCard /> */}
-      <Header/>
-      <Navbar />
+      <Home />
     </div>
   );
 }
