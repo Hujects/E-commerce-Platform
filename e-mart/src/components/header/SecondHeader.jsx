@@ -2,7 +2,7 @@
 function SecondHeader() {
     return (
         <>
-            <section className="mainbody w-[90%]">
+            <section className="mainbody w-[90%] m-t-2">
                 <div>
                     <div className="flex justify-between h-full items-center">
                         <div className='logo'>
