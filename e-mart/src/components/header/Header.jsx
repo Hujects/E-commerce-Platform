@@ -3,12 +3,11 @@ import  SecondHeader  from "./SecondHeader";
 
 function Header() {
     return (
-        <div className="flex-col justify-center w-full">
-            <div className="w-full flex-col justify-center items-center h-full">
+        
+            <div className="w-full flex flex-col justify-center items-center">
                 <TopHeader/>
                 <SecondHeader/>
             </div>
-        </div>
     )
 }
 
