@@ -3,7 +3,7 @@ function SecondHeader() {
     return (
         <>
             <section className="mainbody w-[90%] py-4 border-b-1 border-gray-400 pb-2">
-                <div>
+                <div className="">
                     <div className="flex justify-between h-full">
                         <div className='logo'>
                             <p className="text-3xl font-bold">Hujects</p>
