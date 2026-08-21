@@ -1,20 +1,21 @@
 
 function TopHeader() {
     return (
-        <div className="w-[90%] m-2 border-b-1 border-gray-400 pb-2">
+        <div className="w-full border-b border-[#EDEDED]">
+            <div className="w-[90%] mx-auto m-2 pb-2">
         <div className="flex justify-between ">
             <section className="social_links">
                 <div className="flex gap-3">
-                    <div className="w-7 h-7 bg-gray-400 rounded hover:text-white hover:bg-red-500 flex justify-center items-center">
+                    <div className="head_link">
                         <i className="bi bi-facebook"></i>
                     </div>
-                    <div className="w-7 h-7 bg-gray-400 rounded hover:text-white hover:bg-red-500 flex justify-center items-center">
+                    <div className="head_link">
                         <i className="bi bi-instagram"></i>
                     </div>
-                    <div className="w-7 h-7 bg-gray-400 rounded hover:text-white hover:bg-red-500 flex justify-center items-center">
+                    <div className="head_link">
                         <i className="bi bi-twitter"></i>
                     </div>
-                    <div className="w-7 h-7 bg-gray-400 rounded hover:text-white hover:bg-red-500 flex justify-center items-center">
+                    <div className="head_link">
                         <i className="bi bi-linkedin"></i>
                     </div>
                 </div>
@@ -36,6 +37,7 @@ function TopHeader() {
                     </div>
                 </div>
             </section>
+        </div>
         </div>
         </div>
     )

@@ -1,6 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 @import "tailwindcss";
 
+@theme {
+  --font-sans: "Poppins", sans-serif;
+}
+
 @layer utilities {
+  .border_full{
+    @apply border-[#EDEDED];
+  }
+  .border_b{
+    @apply border-b-[#EDEDED];
+  }
+    .head_link{
+      @apply w-7 h-7 bg-gray-200 rounded-[7px] hover:text-white hover:bg-[var(--primary)] flex justify-center items-center;
+    }
     .nav-hover {
          position: relative;
   padding-bottom: 0.25rem;
@@ -22,6 +37,9 @@
   &:hover::after {
     transform: scaleX(1);
   }
+  &:hover{
+    color: var(--primary);
+  }
     }
 };
 /* index.css */
@@ -41,8 +59,9 @@
   scrollbar-color: #d1d1d1 #f1f1f1;
 }
 
-:root{
 
+:root{
+    --primary: #FF8F9C;
     --spanish-gray: hsl(0, 0%, 60%);
     --sonic-silver: hsl(0, 0%, 47%);
     --eerie-black: hsl(0, 0%, 13%);
