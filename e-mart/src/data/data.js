@@ -521,4 +521,36 @@ let SellerRanking = [
     SuccessfulSales: 275,
   }
 ];
-export { SellerDetails, SellerRanking };
+const titleCards = [
+  { icon: "/dress.png", name: "T-Shirts", count: 35 },
+  { icon: "/jacket-4.jpg", name: "Jacket", count: 16 },
+  { icon: "/perfume.png", name: "Watch", count: 27 },
+  { icon: "/cosmetics.png", name: "Hats & Caps", count: 39 },
+  { icon: "/dress.png", name: "Dress & Frock", count: 53 },
+  { icon: "/shoes.png", name: "Winter Wear", count: 58 },
+  { icon: "/glasses.png", name: "Glasses & Lens", count: 68 },
+  { icon: "/bag.png", name: "Shorts & Jeans", count: 84 },
+];
+
+const newArrivals = [
+  { icon: "/dress.png", name: "New Dress", count: 20 },
+  { icon: "/shoes.png", name: "New Shoes", count: 15 },
+  { icon: "/glasses.png", name: "New Glasses", count: 10 },
+  { icon: "/bag.png", name: "New Bags", count: 8 },
+];
+
+const trending = [
+  { icon: "/perfume.png", name: "Perfume", count: 40 },
+  { icon: "/cosmetics.png", name: "Cosmetics", count: 35 },
+  { icon: "/jewelry.png", name: "Jewelry", count: 22 },
+  { icon: "/dress.png", name: "Dress", count: 30 },
+];
+
+const topRated = [
+  { icon: "/shoes.png", name: "Shoes", count: 50 },
+  { icon: "/bag.png", name: "Bags", count: 45 },
+  { icon: "/glasses.png", name: "Glasses", count: 28 },
+  { icon: "/perfume.png", name: "Perfume", count: 33 },
+];
+
+export { SellerDetails, SellerRanking, titleCards, newArrivals, trending, topRated };
