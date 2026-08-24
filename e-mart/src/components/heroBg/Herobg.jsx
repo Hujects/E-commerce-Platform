@@ -3,8 +3,8 @@ import PrimaryButton from './../UIKIT/PrimaryButton';
 function Herobg() {
     return (
         <>
-            <div className='h-full relative flex justify-center items-center'>
-                <div className=''>
+            <div className='h-full w-full relative flex justify-center items-center'>
+                <div className='w-full'>
                     <img src='/banner-1.jpg' alt="Banner" />
                     <div className='absolute font-medium top-1/2 -translate-y-1/2 left-[10%] flex flex-col gap-4'>
                         <h2 className='text-[var(--primary)] font-medium text-[30px]'>Trending Items</h2>
