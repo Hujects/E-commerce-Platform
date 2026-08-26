@@ -1,75 +1,8 @@
 import { useState } from "react";
 import TitleCard from './../../UIKIT/TitleCard';
-import { newArrivals, trending, topRated } from "../../../data/data";
-const categories = [
-  {
-    icon: "/dress.png",
-    name: "Clothes",
-    items: [
-      { name: "Shirt", count: 300 },
-      { name: "Shorts & Jeans", count: 60 },
-      { name: "Jacket", count: 50 },
-      { name: "Dress & Frock", count: 87 },
-    ],
-  },
-  {
-    icon: "/shoes.png",
-    name: "Footwear",
-    items: [
-      { name: "Sports", count: 45 },
-      { name: "Formal", count: 75 },
-      { name: "Casual", count: 35 },
-      { name: "Safety Shoes", count: 26 },
-    ],
-  },
-  {
-    icon: "/jewelry.png",
-    name: "Jewelry",
-    items: [
-      { name: "Earrings", count: 46 },
-      { name: "Couple Rings", count: 73 },
-      { name: "Necklace", count: 61 },
-    ],
-  },
-  {
-    icon: "/perfume.png",
-    name: "Perfume",
-    items: [
-      { name: "Clothes Perfume", count: 12 },
-      { name: "Deodorant", count: 60 },
-      { name: "Jacket", count: 50 },
-      { name: "Dress & Frock", count: 87 },
-    ],
-  },
-  {
-    icon: "/cosmetics.png",
-    name: "Cosmetics",
-    items: [
-      { name: "Shampoo", count: 68 },
-      { name: "Sunscreen", count: 46 },
-      { name: "Body Wash", count: 79 },
-      { name: "Makeup Kit", count: 23 },
-    ],
-  },
-  {
-    icon: "/glasses.png",
-    name: "Glasses",
-    items: [
-      { name: "Sunglasses", count: 50 },
-      { name: "Lenses", count: 48 },
-    ],
-  },
-  {
-    icon: "/bag.png",
-    name: "Bags",
-    items: [
-      { name: "Shopping Bag", count: 62 },
-      { name: "Gym Backpack", count: 35 },
-      { name: "Purse", count: 80 },
-      { name: "Wallet", count: 75 },
-    ],
-  },
-];
+import { newArrivals, trending, topRated, categories } from "../../../data/data";
+import PrimaryButton from "../../UIKIT/PrimaryButton";
+import Productcard from "../../UIKIT/Productcard/Productcard";
 
 function Category() {
 
@@ -87,8 +20,8 @@ function Category() {
                     {categories.map((cat, index) =>(
                         <div key={index} className="sub_items mb-4">
                             <ul>
-                                <li className={`flex items-center justify-between mb-2 w-[240px] text-[18px] text-[#78789D] cursor-pointer ${openIndex === index ? "pb-2 border-b" : ""}`} onClick={() => toggleCategory(index)}>
-                                    <div className="flex items-center gap-3">
+                                <li className={`flex items-center justify-between mb-2 w-[240px] text-[18px] text-[#78789D] cursor-pointer ${openIndex === index ? "pb-2 border-b border_b" : ""}`} onClick={() => toggleCategory(index)}>
+                                    <div className="flex items-center gap-3 ">
                                         <img className="h-5 w-5" src={cat.icon}/>
                                         <p>{cat.name}</p>
                                     </div>
@@ -138,11 +71,8 @@ function Category() {
                     </div>
                   </div>
                   <div className="deals_of_the_day">
-                    <h2 className="pb-2 border-b">Deals of the day</h2>
-                    <div className="mt-4">
-                      <img src="" alt="product" />
-                      <div>texts</div>
-                    </div>
+                    <h2 className="pb-2 border-b border_b">Deals of the day</h2>
+                    <Productcard />
                   </div>
                   <div className="new_products"></div>
                 </div>

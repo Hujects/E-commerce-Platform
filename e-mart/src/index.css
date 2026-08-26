@@ -14,7 +14,7 @@
     @apply border-b-[#EDEDED];
   }
     .head_link{
-      @apply w-7 h-7 bg-gray-200 rounded-[7px] hover:text-white hover:bg-[var(--primary)] flex justify-center items-center;
+      @apply w-7 h-7 bg-gray-200 rounded-[7px] hover:text-white hover:bg-[var(--salmon-pink)] flex justify-center items-center;
     }
     .nav-hover {
          position: relative;
@@ -38,7 +38,7 @@
     transform: scaleX(1);
   }
   &:hover{
-    color: var(--primary);
+    color: var(--salmon-pink);
   }
     }
 };

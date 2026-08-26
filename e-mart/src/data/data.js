@@ -553,4 +553,73 @@ const topRated = [
   { icon: "/perfume.png", name: "Perfume", count: 33 },
 ];
 
-export { SellerDetails, SellerRanking, titleCards, newArrivals, trending, topRated };
+const categories = [
+  {
+    icon: "/dress.png",
+    name: "Clothes",
+    items: [
+      { name: "Shirt", count: 300 },
+      { name: "Shorts & Jeans", count: 60 },
+      { name: "Jacket", count: 50 },
+      { name: "Dress & Frock", count: 87 },
+    ],
+  },
+  {
+    icon: "/shoes.png",
+    name: "Footwear",
+    items: [
+      { name: "Sports", count: 45 },
+      { name: "Formal", count: 75 },
+      { name: "Casual", count: 35 },
+      { name: "Safety Shoes", count: 26 },
+    ],
+  },
+  {
+    icon: "/jewelry.png",
+    name: "Jewelry",
+    items: [
+      { name: "Earrings", count: 46 },
+      { name: "Couple Rings", count: 73 },
+      { name: "Necklace", count: 61 },
+    ],
+  },
+  {
+    icon: "/perfume.png",
+    name: "Perfume",
+    items: [
+      { name: "Clothes Perfume", count: 12 },
+      { name: "Deodorant", count: 60 },
+      { name: "Jacket", count: 50 },
+      { name: "Dress & Frock", count: 87 },
+    ],
+  },
+  {
+    icon: "/cosmetics.png",
+    name: "Cosmetics",
+    items: [
+      { name: "Shampoo", count: 68 },
+      { name: "Sunscreen", count: 46 },
+      { name: "Body Wash", count: 79 },
+      { name: "Makeup Kit", count: 23 },
+    ],
+  },
+  {
+    icon: "/glasses.png",
+    name: "Glasses",
+    items: [
+      { name: "Sunglasses", count: 50 },
+      { name: "Lenses", count: 48 },
+    ],
+  },
+  {
+    icon: "/bag.png",
+    name: "Bags",
+    items: [
+      { name: "Shopping Bag", count: 62 },
+      { name: "Gym Backpack", count: 35 },
+      { name: "Purse", count: 80 },
+      { name: "Wallet", count: 75 },
+    ],
+  },
+];
+export { SellerDetails, SellerRanking, titleCards, newArrivals, trending, topRated, categories };
