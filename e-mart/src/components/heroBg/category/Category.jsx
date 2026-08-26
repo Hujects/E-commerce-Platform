@@ -88,7 +88,7 @@ function Category() {
                         <div key={index} className="sub_items mb-4">
                             <ul>
                                 <li className={`flex items-center justify-between mb-2 w-[240px] text-[18px] text-[#78789D] cursor-pointer ${openIndex === index ? "pb-2 border-b" : ""}`} onClick={() => toggleCategory(index)}>
-                                    <div className="flex items-center gap-3">
+                                    <div className="flex items-center gap-3 ">
                                         <img className="h-5 w-5" src={cat.icon}/>
                                         <p>{cat.name}</p>
                                     </div>

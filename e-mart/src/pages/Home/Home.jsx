@@ -5,6 +5,7 @@ import Herobg from './../../components/heroBg/Herobg';
 import TitleCard from './../../components/UIKIT/TitleCard';
 import Category from './../../components/heroBg/category/Category';
 import {titleCards} from './../../data/data';
+import Productcard from './../../components/UIKIT/Productcard/Productcard';
 
 
 
@@ -23,6 +24,7 @@ function Home() {
                 </div>
             </div>
             <Category />
+            <Productcard />
         </>
     )
 }
