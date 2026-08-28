@@ -14,7 +14,8 @@ function Category() {
 
     return (
         <>
-            <div className="flex gap-5 w-[90%] mx-auto items-start">
+            <div className="flex gap-5 w-full mx-auto items-start">
+              <div className="w-[90%] mx-auto flex gap-5 items-start">
                 <div className='sidebar sticky top-3 w-[280px] flex-shrink-0 border border-gray-300 rounded-2xl p-5 '>
                     <h2 className='font-semibold text-[20px] mb-4'>Category</h2>
                     {categories.map((cat, index) =>(
@@ -44,38 +45,39 @@ function Category() {
                     ))}
                 </div>
                 <div>
-                  <div className="categories_first flex gap-8 overflow-y-auto">
-                    <div className="new_arrival">
+                  <div className="categories_first flex gap-8 overflow-y-auto overflow-hidden">
+                    <div className="new_arrival w-[300px]">
                       <h2 className="font-semibold text-[20px] mb-2 border-b pb-3 border_b">New Arrivals</h2>
-                      <div className="flex flex-col gap-5">
+                      <div className="grid grid-rows-4 grid-flow-col gap-5 overflow-x-auto custom-scrollbar pb-3">
                         {newArrivals.map((item, i) =>(
                           <TitleCard key={i} icon={item.icon} name={item.name} count={item.count}/>
                         ))}
                       </div>
                     </div>
-                    <div className="trending">
+                    <div className="trending w-[300px]">
                       <h2 className="font-semibold text-[20px] mb-2 border-b pb-3 border_b ">Trending</h2>
-                      <div className="flex flex-col gap-5">
+                      <div className="grid grid-rows-4 grid-flow-col gap-5 overflow-x-auto custom-scrollbar pb-3">
                         {trending.map((item, i) =>(
                           <TitleCard key={i} icon={item.icon} name={item.name} count={item.count}/>
                         ))}
                       </div>
                     </div>
-                    <div className="top_rated">
+                    <div className="top_rated w-[300px]">
                       <h2 className="font-semibold text-[20px] mb-2 border-b pb-3 border_b">Top Rated</h2>
-                      <div className="flex flex-col gap-5">
+                      <div className="grid grid-rows-4 grid-flow-col gap-5 overflow-x-auto custom-scrollbar pb-3">
                         {topRated.map((item, i) =>(
                           <TitleCard key={i} icon={item.icon} name={item.name} count={item.count}/>
                         ))}
                       </div>
                     </div>
                   </div>
-                  <div className="deals_of_the_day">
-                    <h2 className="pb-2 border-b border_b">Deals of the day</h2>
+                  <div className="deals_of_the_day mt-6">
+                    <h2 className="pb-2 border-b border_b font-semibold">Deals of the day</h2>
                     <Productcard />
                   </div>
                   <div className="new_products"></div>
                 </div>
+              </div>
             </div>
         </>
     )

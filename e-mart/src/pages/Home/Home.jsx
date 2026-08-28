@@ -15,7 +15,7 @@ function Home() {
             <Navbar />
             <Herobg />
             <div className='w-full flex justify-center pb-10'>
-                <div className='flex gap-5 pb-4 justify-between overflow-x-auto custom-scrollbar items-start w-[90%]'>
+                <div className='flex gap-5 pb-4 justify-between overflow-x-auto custom-scrollbar items-start w-[90%] mx-auto'>
                     {titleCards.map((card, index) => (
                         <TitleCard key={index} icon={card.icon} name={card.name} count={card.count} />
                     ))}

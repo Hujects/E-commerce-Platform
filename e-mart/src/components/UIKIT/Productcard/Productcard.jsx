@@ -41,11 +41,10 @@ function Productcard() {
                             </div>
                         </div>
                       </div>
-                      
                     </div>
             </div>
         </>
     )
 }
 
-export default Productcard
+export default Productcard;

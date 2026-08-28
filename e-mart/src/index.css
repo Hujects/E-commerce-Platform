@@ -97,11 +97,11 @@
 
     --transition-timing: .2s;
 
-    --max-width: 1280px;
+    /* --max-width: 1280px; */
 }
 
 /* custom variant */
-@custom-variant xs (@media (min-width: 480px));
+/* @custom-variant xs (@media (min-width: 480px));
 @custom-variant tablet (@media (min-width: 768px) and (max-width: 1023px));
 @custom-variant desktop (@media (min-width: 1024px) and (max-width: 1199px));
-@custom-variant lg (@media (min-width: 1200px));
+@custom-variant lg (@media (min-width: 1200px)); */
