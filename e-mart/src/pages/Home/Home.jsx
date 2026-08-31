@@ -7,12 +7,12 @@ import { titleCards } from "./../../data/data";
 
 function Home() {
   return (
-    <div>
+    <div className="flex flex-col items-center">
       <Header />
       <Navbar />
       <Herobg />
-      <div className="w-full flex justify-center pb-10">
-        <div className="flex gap-5 pb-4 justify-between overflow-x-auto custom-scrollbar items-start w-[90%]">
+      <div className="max-w-[var(--max-width)] w-full flex justify-between pb-10">
+        <div className="flex gap-5 pb-4 justify-between overflow-x-auto custom-scrollbar items-start w-full">
           {titleCards.map((card, index) => (
             <TitleCard
               key={index}

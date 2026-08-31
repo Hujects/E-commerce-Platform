@@ -16,8 +16,7 @@
   .head_link {
     @apply w-7 h-7 bg-[var(--icon-bg)] rounded-[7px] transition duration-[var(--transition-timing)] hover:text-white text-[var(--sonic-silver)] hover:bg-[var(--salmon-pink)] hover:cursor-pointer flex justify-center items-center;
   }
-  .nav-menu{
-    
+  .nav-menu {
   }
   .nav-hover {
     position: relative;
@@ -67,7 +66,7 @@
   --primary: #ff8f9c;
   --spanish-gray: hsl(0, 0%, 60%);
   --sonic-silver: hsl(0, 0%, 47%);
-  --eerie-black: hsl(0, 0%, 13%);
+  --erie-black: hsl(0, 0%, 13%);
   --salmon-pink: hsl(353, 100%, 78%);
   --sandy-brown: hsl(29, 90%, 65%);
   --bittersweet: hsl(0, 100%, 70%);
