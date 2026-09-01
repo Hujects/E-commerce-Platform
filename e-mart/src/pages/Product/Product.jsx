@@ -1,14 +1,34 @@
+import { useState } from "react";
 import Header from "../../components/header/Header";
+import Description from "./ProductDetails/Description";
+import Shiping from "./ProductDetails/ShipingAndReturn";
+import ProductGallery from "./ProductDetails/ProductGallery";
+import KeyFeatures from "./ProductDetails/KeyFeatures";
+import Specifications from "./ProductDetails/Specifications";
+import WhatsIncluded from "./ProductDetails/WhatsIncluded";
+import Compatibility from "./ProductDetails/Compatibility";
+import WarrantyAndSupport from "./ProductDetails/WarrantyAndSupport";
 
 export default function Product() {
+  let [productDetailMenu, setproductDetailMenu] = useState("description");
+  let ProductDetailsMenus = [
+    "Description",
+    "Shiping",
+    "Product Gallery",
+    "Key Features",
+    "Specifications",
+    "Whats Included",
+    "Compatibility",
+    "Warranty & Support",
+  ];
   return (
-    <section className="w-full flex flex-col items-center">
+    <section className="w-full flex flex-col items-center relative">
+      {/* <div className="z-10 absolute w-full h-screen bg-[var(--cultured)]"></div> */}
       {/* Header */}
       <Header />
-
       <main className="w-full max-w-[var(--max-width)] py-5">
         {/* Breadcrumb */}
-        <div className="flex items-center gap-2 mb-5 text-[length:var(--fs-7)] text-[var(--sonic-silver)] pt-[40px]">
+        <div className="flex items-center gap-2 mb-5 text-[length:var(--fs-7)] text-[var(--sonic-silver)] pb-[40px]">
           <a href="#" className="hover:text-[var(--primary)]">
             Home
           </a>
@@ -40,7 +60,7 @@ export default function Product() {
 
         {/* Product Overview */}
         <div className="w-full flex gap-[40px]">
-          {/* ================= Product Gallery */}
+          {/* Product Gallery */}
           <div className="w-1/2 flex flex-col gap-5">
             {/* Main Product Image */}
             <div className="relative w-full h-[500px] flex items-center justify-center rounded-2xl overflow-hidden bg-[var(--cultured)]">
@@ -95,25 +115,25 @@ export default function Product() {
           </div>
 
           {/*  Product Information */}
-          <div className="w-1/2 flex flex-col pt-2">
+          <div className="w-1/2 flex flex-col gap-4 pt-2">
             {/* Best Seller */}
-            <div className="flex items-center gap-1.5 mb-2 text-[var(--sandy-brown)] text-[length:var(--fs-8)] font-[var(--weight-600)]">
+            <div className="flex items-center gap-1.5 text-[var(--sandy-brown)] text-[length:var(--fs-8)] font-[var(--weight-600)]">
               <i className="bi bi-star-fill"></i>
               <span>Best Seller</span>
             </div>
 
             {/* Product Title */}
-            <h1 className="text-[length:var(--fs-1)] text-[var(--eerie-black)] font-[var(--weight-700)] mb-3 leading-snug">
+            <h1 className="text-[length:var(--fs-1)] text-[var(--eerie-black)] font-[var(--weight-700)] leading-snug">
               Anon Wireless Headphones
             </h1>
             {/* Description */}
-            <p className="max-w-[550px] text-[length:var(--fs-7)] text-[var(--sonic-silver)] leading-[1.7] mb-5">
+            <p className="max-w-[550px] text-[length:var(--fs-7)] text-[var(--sonic-silver)] leading-[1.7] ">
               Experience premium sound quality with advanced noise cancellation,
               all-day comfort and long battery life. Perfect for music, calls
               and gaming.
             </p>
             {/* Price */}
-            <div className="flex items-center gap-3 mt-5 mb-5">
+            <div className="flex items-center gap-3 ">
               <span className="text-[length:var(--fs-3)] text-[var(--bittersweet)] font-[var(--weight-700)]">
                 $79.99
               </span>
@@ -151,7 +171,7 @@ export default function Product() {
               </span>
             </div>
             {/* Stock*/}
-            <div className="flex items-center justify-between mt-5 mb-1">
+            <div className="flex items-center justify-between">
               {/* Stock Status */}
               <div className="flex items-center gap-2">
                 <span className="text-[length:var(--fs-8)] text-[var(--davys-gray)]">
@@ -170,7 +190,7 @@ export default function Product() {
               </span>
             </div>
             {/* Quantity */}
-            <div className="flex items-center gap-4 mt-3">
+            <div className="flex items-center gap-4">
               <span className="text-[length:var(--fs-8)] text-[var(--davys-gray)] font-[var(--weight-600)]">
                 Quantity:
               </span>
@@ -204,7 +224,7 @@ export default function Product() {
             </div>
 
             {/* Action Buttons */}
-            <div className="grid grid-cols-2 gap-3 mt-5">
+            <div className="grid grid-cols-2 gap-3">
               <button className="h-[45px] flex items-center justify-center gap-2 rounded-[var(--border-radius-small)] border border-[var(--primary)] bg-[var(--primary)] text-[var(--white)] text-[length:var(--fs-7)] font-[var(--weight-600)] transition-all duration-[var(--transition-timing)] hover:opacity-90 hover:shadow-[0_4px_12px_rgba(255,143,156,0.4)] cursor-pointer">
                 <i className="bi bi-cart3"></i>
                 Add to Cart
@@ -222,18 +242,170 @@ export default function Product() {
             </button>
           </div>
         </div>
-        {/* product details */}
-        <div className="">
-            {/* product gellary */}
-            <div></div>
-            {/* product long description */}
-            <div></div>
-            {/* product review */}
-            <div></div>
-        </div>
-        {/* Related product */}
-        <div>
-          
+        {/* Product Additional Details */}
+        <div className="w-full mt-[60px]">
+          {/* Product Details Navigation */}
+          <div className="flex items-center gap-8 border-b border-[var(--cultured)]">
+            {ProductDetailsMenus.map((Menu) => {
+              return (
+                <button
+                  key={Menu}
+                  onClick={() => {
+                    setproductDetailMenu(Menu);
+                  }}
+                  className={`pb-4 text-[length:var(--fs-6)] font-[var(--weight-600)] ${productDetailMenu == Menu ? "border-b-2 border-[var(--primary)] text-[var(--primary)]" : "text-[var(--sonic-silver)] hover:text-[var(--primary)] hover:border-[var(--primary)] hover:border-b-2 hover:text-[var(--primary)]"} cursor-pointer`}
+                >
+                  {Menu}
+                </button>
+              );
+            })}
+          </div>
+          <div className="w-full py-8 border-t border-[var(--cultured)]">
+            {productDetailMenu === "Description" ? <Description /> : ""}
+            {productDetailMenu === "Shiping" ? <Shiping /> : ""}
+            {productDetailMenu === "Product Gallery" ? <ProductGallery /> : ""}
+            {productDetailMenu === "Key Features" ? <KeyFeatures /> : ""}
+            {productDetailMenu === "Specifications" ? <Specifications /> : ""}
+            {productDetailMenu === "Whats Included" ? <WhatsIncluded /> : ""}
+            {productDetailMenu === "Compatibility" ? <Compatibility /> : ""}
+            {productDetailMenu === "Warranty & Support" ? (
+              <WarrantyAndSupport />
+            ) : (
+              ""
+            )}
+          </div>
+
+          {/*  Product Reviews  */}
+          <div className="border-t border-[var(--cultured)] py-8">
+            <h2 className="text-[length:var(--fs-3)] text-[var(--eerie-black)] font-[var(--weight-700)] mb-6">
+              Customer Reviews
+            </h2>
+
+            <div className="flex gap-10 w-full">
+              {/* Rating Summary */}
+              <div className="w-[220px] h-[135px] flex flex-col items-center justify-center border border-[var(--cultured)] rounded-[var(--border-radius-medium)] p-6">
+                <span className="text-[length:var(--fs-1)] text-[var(--eerie-black)] font-[var(--weight-700)]">
+                  4.8
+                </span>
+
+                <div className="flex gap-1 text-[var(--sandy-brown)] my-2">
+                  <i className="bi bi-star-fill"></i>
+                  <i className="bi bi-star-fill"></i>
+                  <i className="bi bi-star-fill"></i>
+                  <i className="bi bi-star-fill"></i>
+                  <i className="bi bi-star"></i>
+                </div>
+
+                <span className="text-[length:var(--fs-8)] text-[var(--sonic-silver)]">
+                  128 Reviews
+                </span>
+              </div>
+
+              {/* Review */}
+              <div className="flex flex-col gap-8 w-full">
+                <div className="border-b border-[var(--cultured)] pb-5 mb-5">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-3">
+                      <div className="w-9 h-9 rounded-full bg-[var(--eerie-black)] text-[var(--primary)] flex items-center justify-center font-[var(--weight-700)]">
+                        AR
+                      </div>
+
+                      <span className="text-[length:var(--fs-7)] text-[var(--eerie-black)] font-[var(--weight-600)]">
+                        Alex Rahimox
+                      </span>
+                    </div>
+
+                    <span className="text-[length:var(--fs-8)] text-[var(--sonic-silver)]">
+                      3.5 days ago
+                    </span>
+                  </div>
+
+                  <div className="flex gap-1 text-[var(--sandy-brown)] mb-2">
+                    <i className="bi bi-star-fill"></i>
+                    <i className="bi bi-star-fill"></i>
+                    <i className="bi bi-star-fill"></i>
+                  </div>
+
+                  <p className="text-[length:var(--fs-7)] text-[var(--sonic-silver)] leading-[1.7]">
+                    Great product with excellent sound quality. The battery life
+                    is also really good.
+                  </p>
+                </div>
+                <div className="border-b border-[var(--cultured)] pb-5 mb-5">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-3">
+                      <div className="w-9 h-9 rounded-full bg-[var(--eerie-black)] text-[var(--primary)] flex items-center justify-center font-[var(--weight-700)]">
+                        A
+                      </div>
+
+                      <span className="text-[length:var(--fs-7)] text-[var(--eerie-black)] font-[var(--weight-600)]">
+                        Alex Morgan
+                      </span>
+                    </div>
+
+                    <span className="text-[length:var(--fs-8)] text-[var(--sonic-silver)]">
+                      2 days ago
+                    </span>
+                  </div>
+
+                  <div className="flex gap-1 text-[var(--sandy-brown)] mb-2">
+                    <i className="bi bi-star-fill"></i>
+                    <i className="bi bi-star-fill"></i>
+                    <i className="bi bi-star-fill"></i>
+                    <i className="bi bi-star-fill"></i>
+                    <i className="bi bi-star-fill"></i>
+                  </div>
+
+                  <p className="text-[length:var(--fs-7)] text-[var(--sonic-silver)] leading-[1.7]">
+                    Great product with excellent sound quality. The battery life
+                    is also really good.
+                  </p>
+                </div>
+                <div className="border-b border-[var(--cultured)] pb-5 mb-5">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-3">
+                      <div className="w-9 h-9 rounded-full bg-[var(--eerie-black)] text-[var(--primary)] flex items-center justify-center font-[var(--weight-700)]">
+                        A
+                      </div>
+
+                      <span className="text-[length:var(--fs-7)] text-[var(--eerie-black)] font-[var(--weight-600)]">
+                        Alex Morgan
+                      </span>
+                    </div>
+
+                    <span className="text-[length:var(--fs-8)] text-[var(--sonic-silver)]">
+                      2 days ago
+                    </span>
+                  </div>
+
+                  <div className="flex gap-1 text-[var(--sandy-brown)] mb-2">
+                    <i className="bi bi-star-fill"></i>
+                    <i className="bi bi-star-fill"></i>
+                    <i className="bi bi-star-fill"></i>
+                    <i className="bi bi-star-fill"></i>
+                    <i className="bi bi-star-fill"></i>
+                  </div>
+
+                  <p className="text-[length:var(--fs-7)] text-[var(--sonic-silver)] leading-[1.7]">
+                    Great product with excellent sound quality. The battery life
+                    is also really good.
+                  </p>
+                </div>
+                <div className="text-[length:var(--fs-5)] text-[var(--primary)] font-[var(--weight-600)] cursor-pointer">
+                  View More...
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/*  Related Products  */}
+          <div className="border-t border-[var(--cultured)] pt-8">
+            <h2 className="text-[length:var(--fs-3)] text-[var(--eerie-black)] font-[var(--weight-700)] mb-6">
+              Related Products
+            </h2>
+
+            <div className="grid grid-cols-4 gap-5"></div>
+          </div>
         </div>
       </main>
     </section>
