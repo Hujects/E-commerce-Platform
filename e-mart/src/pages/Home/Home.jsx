@@ -4,6 +4,7 @@ import Herobg from './../../components/heroBg/Herobg';
 import TitleCard from './../../components/UIKIT/TitleCard';
 import Category from './../../components/heroBg/category/Category';
 import {titleCards} from './../../data/data';
+import WhatsNew from './WhatsNew';
 
 
 
@@ -22,6 +23,7 @@ function Home() {
                 </div>
             </div>
             <Category />
+            <WhatsNew/>
         </>
     )
 }
