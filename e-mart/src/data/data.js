@@ -519,8 +519,109 @@ let SellerRanking = [
     SellerLogo: "/images/sellers/abc-fabrics.png",
     SellerRating: 4.6,
     SuccessfulSales: 275,
-  }
+  },
 ];
+// 
+let Products = [
+  {
+    ProductID: 1,
+    ProductName: "Herbal Shampoo",
+    ProductCategory: "Cosmetics",
+    Brand: "GlowCare",
+
+    ProductImage: "/images/products/shampoo-1.jpg",
+    ProductImages: [
+      "/images/products/shampoo-1.jpg",
+      "/images/products/shampoo-2.jpg",
+      "/images/products/shampoo-3.jpg",
+    ],
+
+    Description: "A gentle herbal shampoo suitable for everyday hair care.",
+
+    Price: 450,
+    Discount: 10,
+    DiscountPrice: 405,
+
+    Stock: 50,
+
+    Rating: 4.5,
+    TotalReviews: 128,
+
+    SellerID: 1,
+    SellerName: "ABC Cosmetics",
+
+    IsFeatured: true,
+    IsBestSeller: true,
+    IsHotSelling: false,
+    IsDiscounted: true,
+    IsInStock: true,
+
+    CreatedAt: "2026-08-31",
+  },
+];
+const Categories = [
+  {
+    CategoryID: 1,
+    CategoryName: "Cosmetics",
+    CategoryImage: "/images/categories/cosmetics.jpg",
+  },
+
+  {
+    CategoryID: 2,
+    CategoryName: "Men's Fashion",
+    CategoryImage: "/images/categories/mens-fashion.jpg",
+  },
+
+  {
+    CategoryID: 3,
+    CategoryName: "Electronics",
+    CategoryImage: "/images/categories/electronics.jpg",
+  },
+];
+const SubCategories = [
+  {
+    SubCategoryID: 1,
+    SubCategoryName: "Shampoo",
+    CategoryID: 1,
+  },
+
+  {
+    SubCategoryID: 2,
+    SubCategoryName: "Face Wash",
+    CategoryID: 1,
+  },
+
+  {
+    SubCategoryID: 3,
+    SubCategoryName: "Skin Care",
+    CategoryID: 1,
+  },
+
+  {
+    SubCategoryID: 4,
+    SubCategoryName: "T-Shirts",
+    CategoryID: 2,
+  },
+
+  {
+    SubCategoryID: 5,
+    SubCategoryName: "Shirts",
+    CategoryID: 2,
+  },
+
+  {
+    SubCategoryID: 6,
+    SubCategoryName: "Mobile",
+    CategoryID: 3,
+  },
+
+  {
+    SubCategoryID: 7,
+    SubCategoryName: "Laptop",
+    CategoryID: 3,
+  },
+];
+// 
 const titleCards = [
   { icon: "/dress.png", name: "T-Shirts", count: 35 },
   { icon: "/jacket-4.jpg", name: "Jacket", count: 16 },
@@ -622,4 +723,15 @@ const categories = [
     ],
   },
 ];
-export { SellerDetails, SellerRanking, titleCards, newArrivals, trending, topRated, categories };
+
+export {
+  SellerDetails,
+  SellerRanking,
+  titleCards,
+  newArrivals,
+  trending,
+  topRated,
+  categories,
+  Products,
+  SubCategories
+};
