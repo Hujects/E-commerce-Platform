@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "../../components/header/Header";
 import Description from "./ProductDetails/Description";
 import Shiping from "./ProductDetails/ShipingAndReturn";
@@ -8,9 +8,15 @@ import Specifications from "./ProductDetails/Specifications";
 import WhatsIncluded from "./ProductDetails/WhatsIncluded";
 import Compatibility from "./ProductDetails/Compatibility";
 import WarrantyAndSupport from "./ProductDetails/WarrantyAndSupport";
+import MainProductCard from "../../components/UIKIT/MainProductCard";
+
+let imgs = ["sports-3.jpg", "/jewellery-1.jpg", "watch-2.jpg", "shirt-1.jpg"];
 
 export default function Product() {
-  let [productDetailMenu, setproductDetailMenu] = useState("description");
+  let [productDetailMenu, setproductDetailMenu] = useState("Description");
+  let [ProductQuantity, setProductQuantity] = useState(1);
+  let [imgPreview, setImgPreview] = useState(false);
+  let [CurrentPreview, setCurrentPreview] = useState(imgs[0]);
   let ProductDetailsMenus = [
     "Description",
     "Shiping",
@@ -21,9 +27,90 @@ export default function Product() {
     "Compatibility",
     "Warranty & Support",
   ];
+  useEffect(() => {
+    const handleEscape = (event) => {
+      if (event.key === "Escape") {
+        setImgPreview(false);
+      }
+      const CurrentPreviwimg = imgs.indexOf(CurrentPreview);
+
+      if (event.key === "ArrowLeft") {
+        if (CurrentPreviwimg > 0) {
+          setCurrentPreview(imgs[CurrentPreviwimg - 1]);
+        }
+      }
+      if (event.key === "ArrowRight") {
+        if (imgs.length - 1 > CurrentPreviwimg) {
+          setCurrentPreview(imgs[CurrentPreviwimg + 1]);
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleEscape);
+
+    return () => {
+      window.removeEventListener("keydown", handleEscape);
+    };
+  }, [CurrentPreview]);
   return (
     <section className="w-full flex flex-col items-center relative">
-      {/* <div className="z-10 absolute w-full h-screen bg-[var(--cultured)]"></div> */}
+      {imgPreview && (
+        <div
+          className="fixed inset-0 z-50 w-full h-screen bg-[rgba(0,0,0,0.85)] flex items-center justify-center"
+          onClick={() => setImgPreview(false)}
+        >
+          {/* Close Button */}
+          <button
+            onClick={() => setImgPreview(false)}
+            className="absolute top-5 right-5 w-[45px] h-[45px] flex items-center justify-center rounded-full bg-[var(--white)] text-[var(--onyx)] hover:text-[var(--primary)] hover:shadow-lg transition-all duration-[var(--transition-timing)] cursor-pointer z-10"
+          >
+            <i className="bi bi-x-lg"></i>
+          </button>
+          <div className="w-1/2 flex flex-col gap-5">
+            {/* Main Product Image */}
+            <div className="relative w-full h-[500px] flex items-center justify-center rounded-2xl overflow-hidden bg-[var(--cultured)]">
+              {/* Discount Badge */}
+              <span className="z-10 absolute top-5 left-5 z-20 px-3 py-1.5 rounded-[var(--border-radius-small)] bg-[var(--primary)] text-[var(--white)] text-[length:var(--fs-8)] font-[var(--weight-600)] tracking-wide">
+                -20%
+              </span>
+
+              {/* Product Image */}
+              <img
+                className="w-[90%] h-[90%] object-contain"
+                src={CurrentPreview}
+                alt="Anon Wireless Headphones"
+              />
+
+              {/* Expand Button */}
+              <button
+                onClick={() => {
+                  setImgPreview(true);
+                }}
+                className="absolute bottom-5 right-5 w-[40px] h-[40px] flex items-center justify-center rounded-full bg-[var(--white)] shadow-md text-[var(--onyx)] hover:text-[var(--primary)] hover:shadow-lg transition-all duration-[var(--transition-timing)] cursor-pointer"
+              >
+                <i className="bi bi-arrows-fullscreen"></i>
+              </button>
+            </div>
+
+            {/* Thumbnails */}
+            <div className="flex gap-3">
+              {imgs.map((img) => {
+                return (
+                  <img
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setCurrentPreview(img);
+                    }}
+                    className={`w-[90px] h-[90px] object-contain rounded-2xl ${CurrentPreview == img ? "border-[3px] border-[var(--primary)] opacity-60" : "border-3 border-[var(--cultured)] hover:opacity-100 hover:border-[var(--primary)] hover:shadow-[0_0_8px_rgba(255,143,156,0.3)] transition-all duration-[var(--transition-timing)] "} cursor-pointer`}
+                    src={img}
+                    alt="Product"
+                  />
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      )}
       {/* Header */}
       <Header />
       <main className="w-full max-w-[var(--max-width)] py-5">
@@ -65,52 +152,42 @@ export default function Product() {
             {/* Main Product Image */}
             <div className="relative w-full h-[500px] flex items-center justify-center rounded-2xl overflow-hidden bg-[var(--cultured)]">
               {/* Discount Badge */}
-              <span className="absolute top-5 left-5 z-20 px-3 py-1.5 rounded-[var(--border-radius-small)] bg-[var(--primary)] text-[var(--white)] text-[length:var(--fs-8)] font-[var(--weight-600)] tracking-wide">
+              <span className="z-10 absolute top-5 left-5 z-20 px-3 py-1.5 rounded-[var(--border-radius-small)] bg-[var(--primary)] text-[var(--white)] text-[length:var(--fs-8)] font-[var(--weight-600)] tracking-wide">
                 -20%
               </span>
 
               {/* Product Image */}
               <img
                 className="w-[90%] h-[90%] object-contain"
-                src="/jewellery-1.jpg"
+                src={CurrentPreview}
                 alt="Anon Wireless Headphones"
               />
 
               {/* Expand Button */}
-              <button className="absolute bottom-5 right-5 w-[40px] h-[40px] flex items-center justify-center rounded-full bg-[var(--white)] shadow-md text-[var(--onyx)] hover:text-[var(--primary)] hover:shadow-lg transition-all duration-[var(--transition-timing)] cursor-pointer">
+              <button
+                onClick={() => {
+                  setImgPreview(true);
+                }}
+                className="absolute bottom-5 right-5 w-[40px] h-[40px] flex items-center justify-center rounded-full bg-[var(--white)] shadow-md text-[var(--onyx)] hover:text-[var(--primary)] hover:shadow-lg transition-all duration-[var(--transition-timing)] cursor-pointer"
+              >
                 <i className="bi bi-arrows-fullscreen"></i>
               </button>
             </div>
 
             {/* Thumbnails */}
             <div className="flex gap-3">
-              {/* Active Thumbnail */}
-              <img
-                className="w-[90px] h-[90px] object-contain rounded-2xl border-[3px] border-[var(--primary)] shadow-[0_0_10px_rgba(255,143,156,0.35)] cursor-pointer"
-                src="/jewellery-1.jpg"
-                alt="Product"
-              />
-
-              {/* Inactive Thumbnail */}
-              <img
-                className="w-[90px] h-[90px] object-contain rounded-2xl border-2 border-[var(--cultured)] opacity-60 hover:opacity-100 hover:border-[var(--primary)] hover:shadow-[0_0_8px_rgba(255,143,156,0.3)] transition-all duration-[var(--transition-timing)] cursor-pointer"
-                src="/jewellery-1.jpg"
-                alt="Product"
-              />
-
-              {/* Inactive Thumbnail */}
-              <img
-                className="w-[90px] h-[90px] object-contain rounded-2xl border-2 border-[var(--cultured)] opacity-60 hover:opacity-100 hover:border-[var(--primary)] hover:shadow-[0_0_8px_rgba(255,143,156,0.3)] transition-all duration-[var(--transition-timing)] cursor-pointer"
-                src="/jewellery-1.jpg"
-                alt="Product"
-              />
-
-              {/* Inactive Thumbnail */}
-              <img
-                className="w-[90px] h-[90px] object-contain rounded-2xl border-2 border-[var(--cultured)] opacity-60 hover:opacity-100 hover:border-[var(--primary)] hover:shadow-[0_0_8px_rgba(255,143,156,0.3)] transition-all duration-[var(--transition-timing)] cursor-pointer"
-                src="/jewellery-1.jpg"
-                alt="Product"
-              />
+              {imgs.map((img) => {
+                return (
+                  <img
+                    onClick={() => {
+                      setCurrentPreview(img);
+                    }}
+                    className={`w-[90px] h-[90px] object-contain rounded-2xl ${CurrentPreview == img ? "border-[3px] border-[var(--primary)] opacity-60" : "border-3 border-[var(--cultured)] hover:opacity-100 hover:border-[var(--primary)] hover:shadow-[0_0_8px_rgba(255,143,156,0.3)] transition-all duration-[var(--transition-timing)] "} cursor-pointer`}
+                    src={img}
+                    alt="Product"
+                  />
+                );
+              })}
             </div>
           </div>
 
@@ -198,17 +275,23 @@ export default function Product() {
               <div className="flex items-center border border-[var(--cultured)] rounded-[var(--border-radius-small)] overflow-hidden">
                 <button
                   type="button"
-                  className="w-[35px] h-[35px] flex items-center justify-center text-[var(--davys-gray)] hover:bg-[var(--cultured)] hover:text-[var(--primary)] transition-all duration-[var(--transition-timing)] cursor-pointer"
+                  onClick={() =>
+                    ProductQuantity > 1
+                      ? setProductQuantity(ProductQuantity - 1)
+                      : null
+                  }
+                  className={`w-[35px] h-[35px] flex items-center justify-center text-[var(--davys-gray)] hover:bg-[var(--cultured)] hover:text-[var(--primary)] transition-all duration-[var(--transition-timing)] ${ProductQuantity == 1 ? "cursor-not-allowed" : "cursor-pointer"}`}
                 >
                   <i className="bi bi-dash"></i>
                 </button>
 
                 <span className="w-[40px] h-[35px] flex items-center justify-center border-x border-[var(--cultured)] text-[length:var(--fs-7)] text-[var(--onyx)] font-[var(--weight-600)]">
-                  1
+                  {ProductQuantity}
                 </span>
 
                 <button
                   type="button"
+                  onClick={() => setProductQuantity(ProductQuantity + 1)}
                   className="w-[35px] h-[35px] flex items-center justify-center text-[var(--davys-gray)] hover:bg-[var(--cultured)] hover:text-[var(--primary)] transition-all duration-[var(--transition-timing)] cursor-pointer"
                 >
                   <i className="bi bi-plus"></i>
@@ -404,7 +487,27 @@ export default function Product() {
               Related Products
             </h2>
 
-            <div className="grid grid-cols-4 gap-5"></div>
+            <div className="grid grid-cols-4 gap-5">
+              <MainProductCard />
+              <MainProductCard />
+              <MainProductCard />
+              <MainProductCard />
+              <MainProductCard />
+              <MainProductCard />
+              <MainProductCard />
+              <MainProductCard />
+              <MainProductCard />
+              <MainProductCard />
+              <MainProductCard />
+              <MainProductCard />
+              <MainProductCard />
+              <MainProductCard />
+              <MainProductCard />
+              <MainProductCard />
+              <MainProductCard />
+              <MainProductCard />
+              <MainProductCard />
+            </div>
           </div>
         </div>
       </main>
