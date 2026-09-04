@@ -15,13 +15,6 @@ function Category() {
     setOpenIndex(openIndex === index ? null : index);
     console.log(index);
   };
-
-    const [openIndex, setOpenIndex] = useState(null);
-    const toggleCategory = (index) => {
-            setOpenIndex(openIndex === index ? null : index);
-            console.log(index)
-    }
-
     return (
         <>
             <div className="flex gap-5 w-full mx-auto items-start">
@@ -89,15 +82,7 @@ function Category() {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div className="deals_of_the_day">
-          <h2 className="pb-2 border-b border_b">Deals of the day</h2>
-          <Productcard />
-        </div>
-        <div className="new_products"></div>
-      </div>
-    </div>
+          </>
   );
 }
 

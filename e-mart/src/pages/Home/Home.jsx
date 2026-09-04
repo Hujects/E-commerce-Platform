@@ -5,6 +5,9 @@ import TitleCard from './../../components/UIKIT/TitleCard';
 import Category from './../../components/heroBg/category/Category';
 import {titleCards} from './../../data/data';
 import WhatsNew from './WhatsNew';
+import StayTuned from './../../components/UIKIT/StayTuned';
+import ExpandingPanels from './../../components/UIKIT/ExpandingPanles';
+import Footer from './../../components/footer/Footer';
 
 
 
@@ -24,6 +27,9 @@ function Home() {
             </div>
             <Category />
             <WhatsNew/>
+            <StayTuned />
+            <ExpandingPanels />
+            <Footer />
         </>
     )
 }
