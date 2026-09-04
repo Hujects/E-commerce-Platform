@@ -1,5 +1,4 @@
-
-import PrimaryButton from './../UIKIT/PrimaryButton';
+import PrimaryButton from "./../UIKIT/PrimaryButton";
 function Herobg() {
     return (
         <>
@@ -18,4 +17,4 @@ function Herobg() {
     )
 }
 
-export default Herobg
+export default Herobg;

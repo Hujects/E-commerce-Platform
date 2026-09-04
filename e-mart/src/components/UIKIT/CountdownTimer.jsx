@@ -39,7 +39,7 @@ function CountdownTimer({ targetDate }) {
       <div className="flex gap-3">
         {timeUnits.map((unit, index) => (
           <div key={index} className="bg-gray-100 rounded-lg px-5 py-3 text-center min-w-[70px]">
-            <p className="text-2xl font-bold">
+            <p className="text-2xl font-medium text-[var(--erie-black)]">
               {String(unit.value).padStart(2, "0")}
             </p>
             <p className="text-xs text-gray-500">{unit.label}</p>

@@ -6,15 +6,15 @@ export default function TitleCard({ icon, name, count }) {
       </div>
       <div className="w-full">
         <div className="flex justify-between items-center gap-[10px]">
-          <h3 className="text-[var(--eerie-black)] text-[var(--fs-7)] font-[var(--weight-600)] uppercase">
+          <h3 className="text-[var(--erie-black)] text-[length:var(--fs-7)] font-semibold uppercase">
             {name}
           </h3>
-          <p className="text-[var(--sonlic-silver)] text-[var(--fs-11)]">
+          <p className="text-[var(--sonlic-silver)] text-[length:var(--fs-11)]">
             ({count})
           </p>
         </div>
         <a
-          className="text-[var(--fs-9)] text-[var(--salmon-pink)] font-[var(--weight-500)]"
+          className="text-[length:var(--fs-9)] text-[var(--salmon-pink)] font-medium"
           href="#"
         >
           Show All
