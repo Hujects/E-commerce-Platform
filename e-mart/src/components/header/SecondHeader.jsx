@@ -1,7 +1,7 @@
 function SecondHeader() {
   return (
     <div className="w-full border-b border-[#EDEDED] py-6.25">
-      <section className="mainbody w-full max-w-[var(--max-width)] mx-auto py-4 pb-2">
+      <section className="mainbody w-full max-w-[var(--max-width)] mx-auto">
         <div className="flex justify-between h-full">
           <div className="logo">
             <p className="text-3xl font-bold">Hujects</p>
