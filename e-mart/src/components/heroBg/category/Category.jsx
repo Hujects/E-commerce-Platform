@@ -47,8 +47,8 @@ function Category() {
                           </div>
                     ))}
                 </div>
-                <div>
-                  <div className="categories_first flex gap-8 overflow-y-auto overflow-hidden">
+                <div className="min-w-0 flex-1">
+                  <div className="categories_first flex gap-8 overflow-x-auto custom-scrollbar">
                     <div className="new_arrival w-[300px]">
                       <h2 className="font-semibold text-[20px] mb-2 border-b pb-3 border_b">New Arrivals</h2>
                       <div className="grid grid-rows-4 grid-flow-col gap-5 overflow-x-auto custom-scrollbar pb-3">
