@@ -638,9 +638,17 @@ const newArrivals = [
   { icon: "/shoes.png", name: "New Shoes", count: 15 },
   { icon: "/glasses.png", name: "New Glasses", count: 10 },
   { icon: "/bag.png", name: "New Bags", count: 8 },
+  { icon: "/dress.png", name: "New Dress", count: 20 },
+  { icon: "/shoes.png", name: "New Shoes", count: 15 },
+  { icon: "/glasses.png", name: "New Glasses", count: 10 },
+  { icon: "/bag.png", name: "New Bags", count: 8 },
 ];
 
 const trending = [
+  { icon: "/perfume.png", name: "Perfume", count: 40 },
+  { icon: "/cosmetics.png", name: "Cosmetics", count: 35 },
+  { icon: "/jewelry.png", name: "Jewelry", count: 22 },
+  { icon: "/dress.png", name: "Dress", count: 30 },
   { icon: "/perfume.png", name: "Perfume", count: 40 },
   { icon: "/cosmetics.png", name: "Cosmetics", count: 35 },
   { icon: "/jewelry.png", name: "Jewelry", count: 22 },
@@ -652,6 +660,10 @@ const topRated = [
   { icon: "/bag.png", name: "Bags", count: 45 },
   { icon: "/glasses.png", name: "Glasses", count: 28 },
   { icon: "/perfume.png", name: "Perfume", count: 33 },
+  { icon: "/perfume.png", name: "Perfume", count: 40 },
+  { icon: "/cosmetics.png", name: "Cosmetics", count: 35 },
+  { icon: "/jewelry.png", name: "Jewelry", count: 22 },
+  { icon: "/dress.png", name: "Dress", count: 30 },
 ];
 
 const categories = [
