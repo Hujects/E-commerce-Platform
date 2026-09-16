@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   const [showpassword, setshowpassword] = useState(false);
@@ -7,14 +8,15 @@ export default function Login() {
       <main className="w-full max-w-[850px]">
         <div className="w-full min-h-[724px] bg-[var(--white)] rounded-2xl overflow-hidden shadow-lg flex">
           {/* Left Side */}
-          <div
-            className="w-[35%] bg-center bg-no-repeat text-[var(--white)] p-8 flex flex-col justify-between"
-            style={{
-              backgroundImage: "url('/pink.png')",
-            }}
-          >
+          <div className="relative w-[35%] bg-center bg-no-repeat text-[var(--white)] p-8 flex flex-col justify-between">
+            {/* background image */}
+            <img
+              src="/pink.png"
+              alt="Login page Background"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
             {/* Content */}
-            <div className="">
+            <div className="relative z-10">
               <h1 className="text-4xl font-[var(--weight-700)] mb-3">Anon</h1>
 
               <p className="text-[length:var(--fs-7)] leading-6">
@@ -24,7 +26,7 @@ export default function Login() {
               </p>
             </div>
 
-            <div className="">
+            <div className="relative z-10">
               <div className="w-10 h-[2px] bg-[var(--white)] mb-5"></div>
 
               <p className="text-sm leading-6">
@@ -101,7 +103,6 @@ export default function Login() {
                   ></i>
                 </div>
               </div>
-
               {/* Remember + Forgot */}
               <div className="flex items-center justify-between">
                 <label className="flex items-center gap-2 cursor-pointer">
@@ -111,13 +112,12 @@ export default function Login() {
                     Remember me
                   </span>
                 </label>
-
-                <a
-                  href="#"
+                <Link
+                  to="/reset-password"
                   className="text-[length:var(--fs-8)] text-[var(--primary)] font-[var(--weight-600)] hover:underline"
                 >
                   Forgot Password?
-                </a>
+                </Link>
               </div>
 
               {/* Login Button */}
@@ -151,12 +151,12 @@ export default function Login() {
             {/* Register */}
             <p className="text-center mt-7 text-[length:var(--fs-8)] text-[var(--sonic-silver)]">
               Don't have an account?{" "}
-              <a
-                href="#"
+              <Link
+                to="/signup"
                 className="text-[var(--primary)] font-[var(--weight-600)] hover:underline"
               >
-                Register
-              </a>
+                Signup
+              </Link>
             </p>
           </div>
         </div>
