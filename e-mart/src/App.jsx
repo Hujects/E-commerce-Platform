@@ -9,6 +9,7 @@ import ResetPassword from "./pages/Login Signup ResetPassword/ResetPassword/Rese
 import CheckEmail from "./pages/Login Signup ResetPassword/ResetPassword/CheckEmail";
 import ResetSuccess from "./pages/Login Signup ResetPassword/ResetPassword/ResetSuccese";
 import SetNewPassword from "./pages/Login Signup ResetPassword/ResetPassword/SetNewPassword";
+import ViewCart from "./pages/Cart/ViewCart";
 function App() {
   return (
     <div className="min-h-screen mx-auto">
@@ -23,6 +24,7 @@ function App() {
         <Route path="/check-email" element={<CheckEmail />} />
         <Route path="/reset-success" element={<ResetSuccess />} />
         <Route path="/set-new-password" element={<SetNewPassword />} />
+        <Route path="/my-cart" element={<ViewCart />} />
       </Routes>
     </div>
   );
