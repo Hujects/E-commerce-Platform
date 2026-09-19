@@ -2,7 +2,7 @@ import PrimaryButton from "./../UIKIT/PrimaryButton";
 function Herobg() {
     return (
         <>
-            <div className='h-full w-full  relative flex justify-center items-center '>
+            <div className='h-full w-full max-w-[var(--max-width)] mx-auto relative flex justify-center items-center '>
                 <div className='w-[90%] desktop:w-[90%] mx-auto'>
                     <img src='/banner-1.jpg' alt="Banner" />
                     <div className='absolute font-medium top-1/2 -translate-y-1/2 left-[10%] flex flex-col gap-4'>
