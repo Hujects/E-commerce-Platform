@@ -16,6 +16,9 @@
   .head_link {
     @apply w-7 h-7 bg-[var(--icon-bg)] rounded-[7px] transition duration-[var(--transition-timing)] hover:text-white text-[var(--sonic-silver)] hover:bg-[var(--salmon-pink)] hover:cursor-pointer flex justify-center items-center;
   }
+  .shadow{
+    @apply box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
   .nav-menu {
   }
   .nav-hover {
@@ -108,4 +111,4 @@
 @custom-variant xs (@media (min-width: 480px));
 @custom-variant tablet (@media (min-width: 768px) and (max-width: 1023px));
 @custom-variant desktop (@media (min-width: 1024px) and (max-width: 1199px));
-@custom-variant lg (@media (min-width: 1200px));
+@custom-variant lg (@media (min-width: 1280px));

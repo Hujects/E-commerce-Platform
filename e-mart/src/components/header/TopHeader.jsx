@@ -1,7 +1,7 @@
 function TopHeader() {
   return (
-    <div className="w-full border-b border-[#EDEDED] flex flex-col items-center">
-      <div className="max-w-[var(--max-width)] w-full flex items-center justify-between py-[10px]">
+    <div className="desktop:w-full w-full border-b border-[#EDEDED] flex flex-col items-center">
+      <div className="desktop:w-[90%] max-w-[var(--max-width)] w-full flex items-center justify-between py-[10px]">
         <section className="social_links">
           <div className="flex gap-3">
             <div className="head_link">
