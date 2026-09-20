@@ -10,6 +10,7 @@ import CheckEmail from "./pages/Login Signup ResetPassword/ResetPassword/CheckEm
 import ResetSuccess from "./pages/Login Signup ResetPassword/ResetPassword/ResetSuccese";
 import SetNewPassword from "./pages/Login Signup ResetPassword/ResetPassword/SetNewPassword";
 import ViewCart from "./pages/Cart/ViewCart";
+import SellerDashboard from "./pages/SellerDashboard/SellerDashboard";
 function App() {
   return (
     <div className="min-h-screen mx-auto">
@@ -25,6 +26,7 @@ function App() {
         <Route path="/reset-success" element={<ResetSuccess />} />
         <Route path="/set-new-password" element={<SetNewPassword />} />
         <Route path="/my-cart" element={<ViewCart />} />
+        <Route path="/seller-dashboard" element={<SellerDashboard />} />
       </Routes>
     </div>
   );
