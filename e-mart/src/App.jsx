@@ -5,6 +5,11 @@ import Cetegory from "./pages/Cetegory/Cetegory";
 import Product from "./pages/Product/Product";
 import Login from "./pages/Login Signup ResetPassword/Login";
 import Signup from "./pages/Login Signup ResetPassword/Signup";
+import ResetPassword from "./pages/Login Signup ResetPassword/ResetPassword/ResetPassword";
+import CheckEmail from "./pages/Login Signup ResetPassword/ResetPassword/CheckEmail";
+import ResetSuccess from "./pages/Login Signup ResetPassword/ResetPassword/ResetSuccese";
+import SetNewPassword from "./pages/Login Signup ResetPassword/ResetPassword/SetNewPassword";
+import ViewCart from "./pages/Cart/ViewCart";
 function App() {
   return (
     <div className="min-h-screen mx-auto">
@@ -15,6 +20,11 @@ function App() {
         <Route path="/cetegory" element={<Cetegory />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/check-email" element={<CheckEmail />} />
+        <Route path="/reset-success" element={<ResetSuccess />} />
+        <Route path="/set-new-password" element={<SetNewPassword />} />
+        <Route path="/my-cart" element={<ViewCart />} />
       </Routes>
     </div>
   );
