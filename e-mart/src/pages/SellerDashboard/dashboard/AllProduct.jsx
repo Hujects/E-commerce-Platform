@@ -77,6 +77,7 @@ export default function AllProduct() {
   const [Search, setSearch] = useState("");
   const [Category, setCategory] = useState("All Categories");
   const [Status, setStatus] = useState("All Status");
+  const [Sort, setSort] = useState("");
 
   const [Products, setProducts] = useState(Products1);
 
@@ -91,6 +92,17 @@ export default function AllProduct() {
     const matchStatus = Status === "All Status" || product.status === Status;
 
     return matchSearch && matchCategory && matchStatus;
+  }).sort((a, b) => {
+    if (Sort === "newest") return b.id - a.id;
+    if (Sort === "oldest") return a.id - b.id;
+    if (Sort === "name-asc") return a.Pname.localeCompare(b.Pname);
+    if (Sort === "name-desc") return b.Pname.localeCompare(a.Pname);
+    if (Sort === "price-asc") return a.price - b.price;
+    if (Sort === "price-desc") return b.price - a.price;
+    if (Sort === "stock-asc") return a.stock - b.stock;
+    if (Sort === "stock-desc") return b.stock - a.stock;
+
+    return 0;
   });
 
   // pagination feature
@@ -112,7 +124,8 @@ export default function AllProduct() {
   };
 
   const handleDelete = (id) => {
-    console.log("Delete Product:", id);
+    const updatedProducts = Products.filter((product) => product.id !== id);
+    setProducts(updatedProducts);
   };
 
   const handleView = (id) => {
@@ -196,54 +209,24 @@ export default function AllProduct() {
             <option>Out of Stock</option>
           </select>
 
-          <div className="relative">
-            <button
-              type="button"
-              className="h-11 px-5 flex items-center gap-2 border border-[var(--cultured)] rounded-lg text-sm text-[var(--eerie-black)] hover:bg-[var(--cultured)] transition"
+          {/* Filter */}
+          <div className="">
+            <select
+              value={Sort}
+              onChange={(e) => setSort(e.target.value)}
+              className="w-[160px] h-11 px-3 border border-[var(--cultured)] rounded-lg outline-none text-sm text-[var(--eerie-black)] bg-[var(--white)] focus:border-[var(--primary)]"
             >
-              <i className="bi bi-funnel"></i>
-              Filter
-            </button>
-
-            <div className="absolute right-0 top-13 z-50 w-64 bg-[var(--white)] border border-[var(--cultured)] rounded-lg shadow-lg p-4">
-              <p className="text-sm font-medium text-[var(--eerie-black)] mb-3">
-                Filter
-              </p>
-
-              {/* Status */}
-              <div className="mb-3">
-                <label className="block text-xs text-[var(--sonic-silver)] mb-1">
-                  Status
-                </label>
-
-                <select
-                  value={Status}
-                  onChange={(e) => setStatus(e.target.value)}
-                  className="w-full h-10 px-3 border border-[var(--cultured)] rounded-lg text-sm outline-none"
-                >
-                  <option>All Status</option>
-                  <option>Active</option>
-                  <option>Inactive</option>
-                </select>
-              </div>
-
-              {/* Status */}
-              <div className="mb-3">
-                <label className="block text-xs text-[var(--sonic-silver)] mb-1">
-                  Filter
-                </label>
-
-                <select
-                  value={Status}
-                  onChange={(e) => setStatus(e.target.value)}
-                  className="w-full h-10 px-3 border border-[var(--cultured)] rounded-lg text-sm outline-none"
-                >
-                  <option>Filter Ascending orders</option>
-                  <option>Filter Descending orders</option>
-                  <option>Fillter by Prices</option>
-                </select>
-              </div>
-            </div>
+              {/* Sort Options */}
+              <option value="">Sort Products</option>
+              <option value="newest">Newest First</option>
+              <option value="oldest">Oldest First</option>
+              <option value="name-asc">Name: A → Z</option>
+              <option value="name-desc">Name: Z → A</option>
+              <option value="price-asc">Price: Low → High</option>
+              <option value="price-desc">Price: High → Low</option>
+              <option value="stock-asc">Stock: Low → High</option>
+              <option value="stock-desc">Stock: High → Low</option>
+            </select>
           </div>
         </div>
       </div>
@@ -466,8 +449,9 @@ export default function AllProduct() {
 
           <div className="flex items-center gap-1">
             <button
+              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
               type="button"
-              className="w-9 h-9 flex items-center justify-center rounded-lg text-[var(--sonic-silver)] hover:bg-[var(--cultured)] transition"
+              className={`w-9 h-9 flex items-center justify-center rounded-lg text-[var(--sonic-silver)] hover:bg-[var(--cultured)] transition ${currentPage === 1 && "cursor-not-allowed opacity-50"}`}
             >
               <i className="bi bi-chevron-left"></i>
             </button>
@@ -491,8 +475,11 @@ export default function AllProduct() {
               );
             })}
             <button
+              onClick={() =>
+                setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+              }
               type="button"
-              className="w-9 h-9 flex items-center justify-center rounded-lg text-[var(--sonic-silver)] hover:bg-[var(--cultured)] transition"
+              className={`w-9 h-9 flex items-center justify-center rounded-lg text-[var(--sonic-silver)] hover:bg-[var(--cultured)] transition ${currentPage === totalPages && "cursor-not-allowed opacity-50"}`}
             >
               <i className="bi bi-chevron-right"></i>
             </button>
