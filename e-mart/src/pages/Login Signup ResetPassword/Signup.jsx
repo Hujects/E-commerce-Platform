@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Login() {
+export default function Signup() {
   const [showpassword, setshowpassword] = useState(false);
   return (
     <section className="w-full min-h-screen flex justify-center items-center">
@@ -8,9 +8,9 @@ export default function Login() {
         <div className="w-full min-h-[724px] bg-[var(--white)] rounded-2xl overflow-hidden shadow-lg flex">
           {/* Left Side */}
           <div
-            className="w-[35%] bg-center bg-no-repeat text-[var(--white)] p-8 flex flex-col justify-between"
+            className="w-[35%] bg-no-repeat text-[var(--white)] p-8 flex flex-col justify-between"
             style={{
-              backgroundImage: "url('/pink.png')",
+              backgroundImage: "url('/yellobg.png')",
             }}
           >
             {/* Content */}
@@ -51,8 +51,29 @@ export default function Login() {
               </p>
             </div>
 
-            {/* ================= FORM ================= */}
+            {/* FORM */}
             <form className="flex flex-col gap-5">
+              {/* Full Name */}
+              <div className="flex flex-col gap-2">
+                <label
+                  htmlFor="fullname"
+                  className="text-[length:var(--fs-8)] text-[var(--onyx)] font-[var(--weight-600)]"
+                >
+                  Full Name
+                </label>
+
+                <div className="relative">
+                  <i className="bi bi-person absolute left-4 top-1/2 -translate-y-1/2 text-[var(--sonic-silver)]"></i>
+
+                  <input
+                    id="fullname"
+                    type="text"
+                    required
+                    placeholder="Enter Your Full Name"
+                    className="w-full h-[48px] pl-11 pr-4 border border-[var(--cultured)] rounded-[var(--border-radius-small)] outline-none text-[length:var(--fs-7)] text-[var(--onyx)] focus:border-[var(--primary)] transition-all"
+                  />
+                </div>
+              </div>
               {/* Email */}
               <div className="flex flex-col gap-2">
                 <label
@@ -101,31 +122,64 @@ export default function Login() {
                   ></i>
                 </div>
               </div>
+              {/* Confirm Password */}
+              <div className="flex flex-col gap-2">
+                <label
+                  htmlFor="confirmpassword"
+                  className="text-[length:var(--fs-8)] text-[var(--onyx)] font-[var(--weight-600)]"
+                >
+                  Confirm Password
+                </label>
 
-              {/* Remember + Forgot */}
+                <div className="relative">
+                  <i className="bi bi-lock absolute left-4 top-1/2 -translate-y-1/2 text-[var(--sonic-silver)]"></i>
+
+                  <input
+                    id="confirmpassword"
+                    type={!showpassword ? "password" : "text"}
+                    placeholder="Confirm your password"
+                    className="w-full h-[48px] pl-11 pr-11 border border-[var(--cultured)] rounded-[var(--border-radius-small)] outline-none text-[length:var(--fs-7)] text-[var(--onyx)] focus:border-[var(--primary)] transition-all"
+                  />
+
+                  <i
+                    onClick={() => {
+                      setshowpassword(!showpassword);
+                    }}
+                    className={`${!showpassword ? "bi bi-eye-slash" : "bi bi-eye"} absolute right-4 top-1/2 -translate-y-1/2 text-[var(--sonic-silver)] cursor-pointer hover:text-[var(--primary)]`}
+                  ></i>
+                </div>
+              </div>
+
+              {/* Privacy policy Agreement */}
               <div className="flex items-center justify-between">
                 <label className="flex items-center gap-2 cursor-pointer">
                   <input type="checkbox" className="accent-[var(--primary)]" />
 
                   <span className="text-[length:var(--fs-8)] text-[var(--davys-gray)]">
-                    Remember me
+                    I agree to the{" "}
+                    <a
+                      href="#"
+                      className="text-[length:var(--fs-8)] text-[var(--yello-bg)] font-[var(--weight-600)] hover:underline"
+                    >
+                      Terms & Conditions {" "}
+                    </a>
+                    and
+                    <a
+                      href="#"
+                      className="text-[length:var(--fs-8)] text-[var(--yello-bg)] font-[var(--weight-600)] hover:underline"
+                    >
+                     {" "}Privacy Policy
+                    </a>
                   </span>
                 </label>
-
-                <a
-                  href="#"
-                  className="text-[length:var(--fs-8)] text-[var(--primary)] font-[var(--weight-600)] hover:underline"
-                >
-                  Forgot Password?
-                </a>
               </div>
 
-              {/* Login Button */}
+              {/* Signup Button */}
               <button
                 type="submit"
-                className="w-full h-[48px] rounded-[var(--border-radius-small)] bg-[#FA7178] text-[var(--white)] text-[length:var(--fs-7)] font-[var(--weight-600)] hover:opacity-90 hover:shadow-[0_4px_12px_rgba(255,143,156,0.4)] transition-all cursor-pointer"
+                className="w-full h-[48px] rounded-[var(--border-radius-small)] bg-[#F58C3F] text-[var(--white)] text-[length:var(--fs-7)] font-[var(--weight-600)] hover:opacity-90 hover:shadow-[0_4px_12px_rgba(255,143,156,0.4)] transition-all cursor-pointer"
               >
-                Login
+                Signup
               </button>
 
               {/* OR */}
@@ -144,18 +198,18 @@ export default function Login() {
                 type="button"
                 className="w-full h-[48px] flex items-center justify-center gap-3 border border-[var(--cultured)] rounded-[var(--border-radius-small)] bg-[var(--white)] text-[length:var(--fs-7)] text-[var(--onyx)] font-[var(--weight-600)] hover:bg-[var(--cultured)] transition-all cursor-pointer"
               >
-                <i className="bi bi-google text-[var(--bittersweet)]"></i>
+                <i className="bi bi-google text-[var(--yello-bg)]"></i>
                 Continue with Google
               </button>
             </form>
-            {/* Register */}
+            {/* Login */}
             <p className="text-center mt-7 text-[length:var(--fs-8)] text-[var(--sonic-silver)]">
-              Don't have an account?{" "}
+              Already have an account?{" "}
               <a
                 href="#"
-                className="text-[var(--primary)] font-[var(--weight-600)] hover:underline"
+                className="text-[var(--yello-bg)] font-[var(--weight-600)] hover:underline"
               >
-                Register
+                Login
               </a>
             </p>
           </div>
