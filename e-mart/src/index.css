@@ -13,11 +13,14 @@
   .border_b {
     @apply border-b-[#EDEDED];
   }
+  .contact_box{
+    @apply border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500;
+  }
   .head_link {
     @apply w-7 h-7 bg-[var(--icon-bg)] rounded-[7px] transition duration-[var(--transition-timing)] hover:text-white text-[var(--sonic-silver)] hover:bg-[var(--salmon-pink)] hover:cursor-pointer flex justify-center items-center;
   }
   .shadow{
-    @apply box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   }
   .nav-menu {
   }
