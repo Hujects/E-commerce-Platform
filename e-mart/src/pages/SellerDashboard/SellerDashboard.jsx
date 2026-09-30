@@ -3,7 +3,7 @@ import Dashboard from "./dashboard/dashboard";
 import AllProduct from "./dashboard/AllProduct";
 import AddProduct from "./dashboard/AddProduct";
 import Categories from "./dashboard/Categories";
-import AllOrder from "./dashboard/AllOrder";
+import AllOrder from "./dashboard/AllOrders";
 import PendingOrder from "./dashboard/PendingOrder";
 import ProcessingOrder from "./dashboard/ProcessingOrder";
 import ShippedOrder from "./dashboard/ShippedProduct";
@@ -133,19 +133,6 @@ export default function SellerDashboard() {
                         } hover:cursor-pointer transition-colors`}
                       >
                         Add Product
-                      </button>
-
-                      {/* Categories */}
-                      <button
-                        type="button"
-                        onClick={() => setCurrentContent("category")}
-                        className={`w-full text-left px-3 py-2 rounded-md text-xs ${
-                          CurrentContent === "category"
-                            ? "text-[var(--primary)] bg-[var(--primary)]/15"
-                            : "text-[var(--davys-gray)] hover:text-[var(--primary)] hover:bg-[var(--primary)]/15"
-                        } hover:cursor-pointer transition-colors`}
-                      >
-                        Categories
                       </button>
 
                       {/* Inventory */}

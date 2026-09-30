@@ -3,6 +3,7 @@ import { useState } from "react";
 export default function AddProduct() {
   const [images, setImages] = useState([]);
   const [featureInput, setFeatureInput] = useState("");
+  const [IncludingItems, setIncludingItems] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     category: "",
@@ -15,6 +16,7 @@ export default function AddProduct() {
     status: "Active",
     featured: false,
     keyFeatures: [],
+    IncluDingItems: [],
   });
 
   const handleChange = (e) => {
@@ -53,7 +55,7 @@ export default function AddProduct() {
 
     alert("Product added successfully!");
   };
-  // feature input handler
+  // feature input Handler
   const handleAddFeature = () => {
     const feature = featureInput.trim();
 
@@ -65,6 +67,19 @@ export default function AddProduct() {
     }));
 
     setFeatureInput("");
+  };
+  // Includs Items Handler
+  const handleIncludingItems = () => {
+    const item = IncludingItems.trim();
+
+    if (!item) return;
+
+    setFormData((prev) => ({
+      ...prev,
+      IncluDingItems: [...prev.IncluDingItems, item],
+    }));
+
+    setIncludingItems("");
   };
 
   return (
@@ -141,7 +156,7 @@ export default function AddProduct() {
                 {/* Key Features */}
               </div>
             </div>
-            
+
             {/* Key Features */}
             <div className="bg-[var(--white)] border border-[var(--cultured)] rounded-lg p-5">
               <div className="mb-5">
@@ -189,7 +204,7 @@ export default function AddProduct() {
 
                 {/* Added Features */}
                 {formData.keyFeatures.length > 0 && (
-                  <div className="space-y-2 space-x-2 flex">
+                  <div className="flex gap-2 flex-wrap">
                     {formData.keyFeatures.map((feature, index) => (
                       <div
                         key={index}
@@ -213,7 +228,89 @@ export default function AddProduct() {
                               ),
                             }));
                           }}
-                          className="shrink-0 text-[var(--sonic-silver)] hover:text-red-500 transition"
+                          className="shrink-0 text-[var(--sonic-silver)] hover:text-red-500 hover:cursor-pointer transition"
+                        >
+                          <i className="bi bi-x-lg"></i>
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* What's Included */}
+            <div className="bg-[var(--white)] border border-[var(--cultured)] rounded-lg p-5">
+              <div className="mb-5">
+                <h2 className="text-base font-semibold text-[var(--eerie-black)]">
+                  What's Included
+                </h2>
+
+                <p className="text-xs text-[var(--sonic-silver)] mt-1">
+                  Specify the items that come with the product.
+                </p>
+              </div>
+
+              <div className="space-y-4">
+                {/* Item Input */}
+                <div>
+                  <label className="block text-sm font-medium text-[var(--eerie-black)] mb-2">
+                    Item's Name
+                  </label>
+
+                  <div className="flex gap-2">
+                    <input
+                      type="text"
+                      value={IncludingItems}
+                      onChange={(e) => setIncludingItems(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          e.preventDefault();
+                          handleIncludingItems();
+                        }
+                      }}
+                      placeholder="Enter included item"
+                      className="flex-1 h-11 px-3 rounded-lg border border-[var(--cultured)] bg-[var(--white)] text-sm outline-none focus:border-[var(--primary)] transition"
+                    />
+
+                    <button
+                      type="button"
+                      onClick={handleIncludingItems}
+                      className="h-11 px-5 rounded-lg bg-[var(--primary)] text-[var(--white)] text-sm font-medium hover:opacity-90 transition"
+                    >
+                      <i className="bi bi-plus-lg mr-1"></i>
+                      Add
+                    </button>
+                  </div>
+                </div>
+
+                {/* Added Items */}
+                {formData.IncluDingItems.length > 0 && (
+                  <div className="flex gap-2 flex-wrap">
+                    {formData.IncluDingItems.map((item, index) => (
+                      <div
+                        key={index}
+                        className="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-[var(--cultured)]"
+                      >
+                        <div className="flex items-center gap-2 min-w-0">
+                          <i className="bi bi-check-circle-fill text-[var(--primary)]"></i>
+
+                          <span className="text-sm text-[var(--eerie-black)]">
+                            {item}
+                          </span>
+                        </div>
+
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setFormData((prev) => ({
+                              ...prev,
+                              IncluDingItems: prev.IncluDingItems.filter(
+                                (_, i) => i !== index,
+                              ),
+                            }));
+                          }}
+                          className="shrink-0 text-[var(--sonic-silver)] hover:text-red-500 hover:cursor-pointer transition"
                         >
                           <i className="bi bi-x-lg"></i>
                         </button>
