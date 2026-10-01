@@ -4,9 +4,9 @@ const ordersData = [
     id: "#ORD-1001",
     customer: "John Doe",
     email: "john@example.com",
-    avatar: "/avatar-1.jpg",
+    avatar: "/1.jpg",
     product: "Men's Winter Leathers Jackets",
-    image: "/jewellery-1.jpg",
+    image: "/jacket-1.jpg",
     quantity: 1,
     date: "Sep 28, 2026",
     time: "10:24 AM",
@@ -18,9 +18,9 @@ const ordersData = [
     id: "#ORD-1002",
     customer: "Sarah Smith",
     email: "sarah@example.com",
-    avatar: "/avatar-2.jpg",
+    avatar: "/2.jpg",
     product: "Women's Summer Dress",
-    image: "/jewellery-1.jpg",
+    image: "/party-wear-1.jpg",
     quantity: 2,
     date: "Sep 28, 2026",
     time: "09:17 AM",
@@ -32,9 +32,9 @@ const ordersData = [
     id: "#ORD-1003",
     customer: "Michael Brown",
     email: "michael@example.com",
-    avatar: "/avatar-3.jpg",
+    avatar: "/3.jpg",
     product: "Classic Running Shoes",
-    image: "/jewellery-1.jpg",
+    image: "/shoe-1.jpg",
     quantity: 1,
     date: "Sep 27, 2026",
     time: "04:32 PM",
@@ -46,9 +46,9 @@ const ordersData = [
     id: "#ORD-1004",
     customer: "Emily Johnson",
     email: "emily@example.com",
-    avatar: "/avatar-4.jpg",
+    avatar: "/4.jpg",
     product: "Leather Travel Bag",
-    image: "/jewellery-1.jpg",
+    image: "/bag.png",
     quantity: 1,
     date: "Sep 27, 2026",
     time: "12:18 PM",
@@ -60,9 +60,9 @@ const ordersData = [
     id: "#ORD-1005",
     customer: "David Wilson",
     email: "david@example.com",
-    avatar: "/avatar-5.jpg",
+    avatar: "/1.jpg",
     product: "Smart Watch Series 5",
-    image: "/jewellery-1.jpg",
+    image: "/watch-1.jpg",
     quantity: 1,
     date: "Sep 26, 2026",
     time: "03:45 PM",
@@ -74,9 +74,9 @@ const ordersData = [
     id: "#ORD-1006",
     customer: "Olivia Davis",
     email: "olivia@example.com",
-    avatar: "/avatar-6.jpg",
+    avatar: "/2.jpg",
     product: "Women's Handbag",
-    image: "/jewellery-1.jpg",
+    image: "/jewellery-2.jpg",
     quantity: 1,
     date: "Sep 25, 2026",
     time: "11:22 AM",
@@ -88,9 +88,9 @@ const ordersData = [
     id: "#ORD-1007",
     customer: "James Miller",
     email: "james@example.com",
-    avatar: "/avatar-7.jpg",
+    avatar: "/3.jpg",
     product: "Casual Cotton T-Shirt",
-    image: "/jewellery-1.jpg",
+    image: "/shirt-1.jpg",
     quantity: 3,
     date: "Sep 25, 2026",
     time: "09:10 AM",
@@ -102,9 +102,9 @@ const ordersData = [
     id: "#ORD-1008",
     customer: "Sophia Anderson",
     email: "sophia@example.com",
-    avatar: "/avatar-8.jpg",
+    avatar: "/4.jpg",
     product: "Premium Sunglasses",
-    image: "/jewellery-1.jpg",
+    image: "/glasses.png",
     quantity: 1,
     date: "Sep 24, 2026",
     time: "02:36 PM",
@@ -120,6 +120,7 @@ export default function AllOrders() {
   const [Orders, setOrders] = useState(ordersData);
   const [Sort, setSort] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [OpenMenu, setOpenMenu] = useState(null);
 
   const ordersPerPage = 10;
 
@@ -166,8 +167,7 @@ export default function AllOrders() {
 
   const showingTo = Math.min(indexOfLastOrder, FilteredOrders.length);
 
-  // ================= SUMMARY =================
-
+  // Orders Summary
   const TotalOrders = Orders.length;
 
   const PendingOrders = Orders.filter(
@@ -182,21 +182,39 @@ export default function AllOrders() {
     (order) => order.status === "Delivered",
   ).length;
 
-  // ================= RESET PAGE =================
-
-  // useEffect(() => {
-  //   setCurrentPage(1);
-  // }, [Search, Status, Payment, Sort]);
-
-  // ================= ACTION =================
-
+  // Action Handlers
   const handleViewOrder = (id) => {
     console.log("View Order:", id);
+    setOpenMenu(null);
   };
 
+  const handleUpdateStatus = (id) => {
+    console.log("Update Status:", id);
+    setOpenMenu(null);
+  };
+
+  const handleContactCustomer = (id) => {
+    console.log("Contact Customer:", id);
+    setOpenMenu(null);
+  };
+
+  const handlePrintInvoice = (id) => {
+    console.log("Print Invoice:", id);
+    setOpenMenu(null);
+  };
+
+  const handleCancelOrder = (id) => {
+    setOrders((prevOrders) =>
+      prevOrders.map((order) =>
+        order.id === id ? { ...order, status: "Cancelled" } : order,
+      ),
+    );
+
+    setOpenMenu(null);
+  };
   return (
     <section className="w-full h-full min-h-0 flex flex-col overflow-hidden">
-      {/* ================= PAGE HEADER ================= */}
+      {/* PAGE HEADER */}
       <div className="shrink-0 flex items-center justify-between mb-6">
         <div>
           <h1 className="text-2xl font-semibold text-[var(--eerie-black)]">
@@ -217,108 +235,98 @@ export default function AllOrders() {
         </button>
       </div>
 
-      {/* ================= ORDER SUMMARY ================= */}
-
+      {/* Order Summary */}
       <div className="shrink-0 grid grid-cols-4 gap-4 mb-5">
-        {/* Total Orders */}
-
+        {/* Total */}
         <div className="bg-[var(--white)] border border-[var(--cultured)] rounded-lg p-5">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-full bg-green-50 flex items-center justify-center">
-              <i className="bi bi-bag text-xl text-green-500"></i>
-            </div>
-
+          <div className="flex items-start justify-between">
             <div>
-              <p className="text-sm text-[var(--sonic-silver)]">Total Orders</p>
+              <p className="text-xs text-[var(--sonic-silver)]">Total Orders</p>
 
-              <h2 className="text-2xl font-semibold text-[var(--eerie-black)] mt-1">
-                {TotalOrders}
+              <h2 className="text-2xl font-semibold text-[var(--eerie-black)] mt-2">
+                128
               </h2>
 
-              <p className="text-xs text-[var(--sonic-silver)] mt-1">
-                All orders
+              <p className="text-xs text-green-600 mt-3 flex items-center gap-1">
+                <i className="bi bi-arrow-up"></i>
+                +12% this month
               </p>
+            </div>
+
+            <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center">
+              <i className="bi bi-bag text-blue-500 text-lg"></i>
             </div>
           </div>
         </div>
 
-        {/* Pending Orders */}
+        {/* Pending */}
+        <div className="flex items-start justify-between bg-[var(--white)] border border-[var(--cultured)] rounded-lg p-5">
+          <div>
+            <p className="text-xs text-[var(--sonic-silver)]">Pending Orders</p>
 
-        <div className="bg-[var(--white)] border border-[var(--cultured)] rounded-lg p-5">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-full bg-orange-50 flex items-center justify-center">
-              <i className="bi bi-clock text-xl text-orange-500"></i>
-            </div>
+            <h2 className="text-2xl font-semibold text-[var(--eerie-black)] mt-2">
+              {PendingOrders}
+            </h2>
 
-            <div>
-              <p className="text-sm text-[var(--sonic-silver)]">
-                Pending Orders
-              </p>
+            <p className="text-xs text-yellow-600 mt-3 flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-yellow-500"></span>
+              Need attention
+            </p>
+          </div>
 
-              <h2 className="text-2xl font-semibold text-[var(--eerie-black)] mt-1">
-                {PendingOrders}
-              </h2>
-
-              <p className="text-xs text-[var(--sonic-silver)] mt-1">
-                Need attention
-              </p>
-            </div>
+          <div className="w-10 h-10 rounded-full bg-yellow-50 flex items-center justify-center">
+            <i className="bi bi-clock text-yellow-500 text-lg"></i>
           </div>
         </div>
 
-        {/* Processing Orders */}
+        {/* Processing */}
+        <div className="flex items-start justify-between bg-[var(--white)] border border-[var(--cultured)] rounded-lg p-5">
+          <div>
+            <p className="text-xs text-[var(--sonic-silver)]">
+              Processing Orders
+            </p>
 
-        <div className="bg-[var(--white)] border border-[var(--cultured)] rounded-lg p-5">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center">
-              <i className="bi bi-arrow-repeat text-xl text-blue-500"></i>
-            </div>
+            <h2 className="text-2xl font-semibold text-[var(--eerie-black)] mt-2">
+              {ProcessingOrders}
+            </h2>
 
-            <div>
-              <p className="text-sm text-[var(--sonic-silver)]">
-                Processing Orders
-              </p>
+            <p className="text-xs text-purple-600 mt-3 flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-purple-500"></span>
+              In progress
+            </p>
+          </div>
 
-              <h2 className="text-2xl font-semibold text-[var(--eerie-black)] mt-1">
-                {ProcessingOrders}
-              </h2>
-
-              <p className="text-xs text-[var(--sonic-silver)] mt-1">
-                In progress
-              </p>
-            </div>
+          <div className="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center">
+            <i className="bi bi-gear text-purple-500 text-lg"></i>
           </div>
         </div>
 
-        {/* Delivered Orders */}
+        {/* Delivered */}
+        <div className="flex items-start justify-between bg-[var(--white)] border border-[var(--cultured)] rounded-lg p-5">
+          <div>
+            <p className="text-xs text-[var(--sonic-silver)]">
+              Delivered Orders
+            </p>
 
-        <div className="bg-[var(--white)] border border-[var(--cultured)] rounded-lg p-5">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-full bg-green-50 flex items-center justify-center">
-              <i className="bi bi-check-circle text-xl text-green-500"></i>
-            </div>
+            <h2 className="text-2xl font-semibold text-[var(--eerie-black)] mt-2">
+              {DeliveredOrders}
+            </h2>
 
-            <div>
-              <p className="text-sm text-[var(--sonic-silver)]">
-                Delivered Orders
-              </p>
+            <p className="text-xs text-green-600 mt-3 flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+              Completed
+            </p>
+          </div>
 
-              <h2 className="text-2xl font-semibold text-[var(--eerie-black)] mt-1">
-                {DeliveredOrders}
-              </h2>
-
-              <p className="text-xs text-[var(--sonic-silver)] mt-1">
-                Successfully delivered
-              </p>
-            </div>
+          <div className="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center">
+            <i className="bi bi-check-circle text-green-500 text-lg"></i>
           </div>
         </div>
       </div>
 
-      {/* ================= MAIN ORDERS BOX ================= */}
-
+      {/* MAIN ORDERS BOX */}
       <div className="flex-1 min-h-0 bg-[var(--white)] border border-[var(--cultured)] rounded-lg px-5 flex flex-col overflow-hidden">
-        {/* ================= FILTER AREA ================= */}
+        {/* FILTER AREA */}
 
         <div className="shrink-0 flex items-center gap-3 py-4">
           {/* Search */}
@@ -378,13 +386,11 @@ export default function AllOrders() {
           </select>
         </div>
 
-        {/* ================= TABLE SCROLL AREA ================= */}
-
+        {/* TABLE SCROLL AREA */}
         <div className="flex-1 min-h-0 overflow-hidden border-t border-[var(--cultured)]">
           <div className="h-full overflow-auto">
             <table className="w-full min-w-[1100px] border-collapse">
               {/* TABLE HEADER */}
-
               <thead className="sticky top-0 z-10 bg-[var(--white)]">
                 <tr className="bg-[var(--cultured)]/40 border-b border-[var(--cultured)]">
                   <th className="text-left px-4 py-4 text-xs font-semibold text-[var(--sonic-silver)] uppercase">
@@ -422,13 +428,12 @@ export default function AllOrders() {
               </thead>
 
               {/* TABLE BODY */}
-
               <tbody>
                 {currentOrders.length > 0 ? (
                   currentOrders.map((order) => (
                     <tr
                       key={order.id}
-                      className="border-b border-[var(--cultured)] last:border-b-0 hover:bg-[var(--cultured)]/20 transition"
+                      className="relative border-b border-[var(--cultured)] last:border-b-0 hover:bg-[var(--cultured)]/20 transition"
                     >
                       {/* Order */}
                       <td className="px-4">
@@ -551,57 +556,77 @@ export default function AllOrders() {
                         )}
                       </td>
 
-                      {/* Action */}
-                      <td className="flex justify-end px-4">
-                        <div className="relative group">
+                      {/* Action Menu */}
+                      <td className="relative group flex justify-end px-4">
+                        <button
+                          type="button"
+                          className="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-[var(--cultured)] transition"
+                          title="More"
+                        >
+                          <i className="bi bi-three-dots-vertical text-lg"></i>
+                        </button>
+                        <div
+                          className={` absolute right-0 top-10 z-30 w-48 bg-[var(--white)] border border-[var(--cultured)] rounded-lg shadow-lg p-1 hidden group-hover:block`}
+                        >
+                          {/* View Order */}
                           <button
                             type="button"
-                            className="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-[var(--cultured)] transition"
-                            title="More"
+                            onClick={() => handleViewOrder(order.id)}
+                            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-md text-sm text-[var(--eerie-black)] hover:bg-[var(--cultured)] transition"
                           >
-                            <i className="bi bi-three-dots-vertical text-lg"></i>
+                            <i className="bi bi-eye"></i>
+                            View Order
                           </button>
 
-                          {/* Dropdown */}
-                          <div className="absolute right-0 top-10 z-20 w-44 bg-[var(--white)] border border-[var(--cultured)] rounded-lg shadow-lg p-1 hidden group-hover:block">
-                            <button
-                              type="button"
-                              onClick={() => handleView(product.id)}
-                              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-md text-sm text-[var(--eerie-black)] hover:bg-[var(--cultured)] transition"
-                            >
-                              <i className="bi bi-eye"></i>
-                              View Product
-                            </button>
+                          {/* Update Status */}
+                          {order.status !== "Delivered" &&
+                            order.status !== "Cancelled" && (
+                              <button
+                                type="button"
+                                onClick={() => handleUpdateStatus(order.id)}
+                                className="w-full flex items-center gap-3 px-3 py-2.5 rounded-md text-sm text-[var(--eerie-black)] hover:bg-[var(--cultured)] transition"
+                              >
+                                <i className="bi bi-arrow-repeat"></i>
+                                Update Status
+                              </button>
+                            )}
 
-                            <button
-                              type="button"
-                              onClick={() => handleEdit(product.id)}
-                              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-md text-sm text-[var(--eerie-black)] hover:bg-[var(--cultured)] transition"
-                            >
-                              <i className="bi bi-pencil"></i>
-                              Edit Product
-                            </button>
+                          {/* Contact Customer */}
+                          <button
+                            type="button"
+                            onClick={() => handleContactCustomer(order.id)}
+                            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-md text-sm text-[var(--eerie-black)] hover:bg-[var(--cultured)] transition"
+                          >
+                            <i className="bi bi-chat-dots"></i>
+                            Contact Customer
+                          </button>
 
-                            <button
-                              type="button"
-                              onClick={() => handleDuplicate(product.id)}
-                              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-md text-sm text-[var(--eerie-black)] hover:bg-[var(--cultured)] transition"
-                            >
-                              <i className="bi bi-copy"></i>
-                              Duplicate
-                            </button>
+                          {/* Print Invoice */}
+                          <button
+                            type="button"
+                            onClick={() => handlePrintInvoice(order.id)}
+                            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-md text-sm text-[var(--eerie-black)] hover:bg-[var(--cultured)] transition"
+                          >
+                            <i className="bi bi-printer"></i>
+                            Print Invoice
+                          </button>
 
-                            <div className="my-1 border-t border-[var(--cultured)]"></div>
+                          {/* Cancel Order */}
+                          {order.status !== "Delivered" &&
+                            order.status !== "Cancelled" && (
+                              <>
+                                <div className="my-1 border-t border-[var(--cultured)]"></div>
 
-                            <button
-                              type="button"
-                              onClick={() => handleDelete(product.id)}
-                              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-md text-sm text-red-500 hover:bg-red-50 transition"
-                            >
-                              <i className="bi bi-trash"></i>
-                              Delete
-                            </button>
-                          </div>
+                                <button
+                                  type="button"
+                                  onClick={() => handleCancelOrder(order.id)}
+                                  className="w-full flex items-center gap-3 px-3 py-2.5 rounded-md text-sm text-red-500 hover:bg-red-50 transition"
+                                >
+                                  <i className="bi bi-x-circle"></i>
+                                  Cancel Order
+                                </button>
+                              </>
+                            )}
                         </div>
                       </td>
                     </tr>
@@ -629,7 +654,6 @@ export default function AllOrders() {
 
           <div className="flex items-center gap-1">
             {/* Previous */}
-
             <button
               onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
               disabled={currentPage === 1}
@@ -642,7 +666,6 @@ export default function AllOrders() {
             </button>
 
             {/* Page Numbers */}
-
             {Array.from({ length: totalPages }, (_, index) => {
               const page = index + 1;
 
@@ -663,7 +686,6 @@ export default function AllOrders() {
             })}
 
             {/* Next */}
-
             <button
               onClick={() =>
                 setCurrentPage((prev) => Math.min(prev + 1, totalPages))

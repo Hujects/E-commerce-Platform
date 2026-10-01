@@ -13,7 +13,7 @@ const ordersData = [
     time: "09:10 AM",
     payment: "Paid",
     amount: 72,
-    status: "Delivered",
+    status: "Pending",
   },
   {
     id: "#ORD-1002",
@@ -27,7 +27,7 @@ const ordersData = [
     time: "09:17 AM",
     payment: "Paid",
     amount: 96,
-    status: "Delivered",
+    status: "Pending",
   },
   {
     id: "#ORD-1011",
@@ -41,7 +41,7 @@ const ordersData = [
     time: "11:30 AM",
     payment: "Pending",
     amount: 35,
-    status: "Delivered",
+    status: "Pending",
   },
   {
     id: "#ORD-1004",
@@ -55,7 +55,7 @@ const ordersData = [
     time: "12:18 PM",
     payment: "Paid",
     amount: 85,
-    status: "Delivered",
+    status: "Pending",
   },
   {
     id: "#ORD-1015",
@@ -69,7 +69,7 @@ const ordersData = [
     time: "02:15 PM",
     payment: "Paid",
     amount: 90,
-    status: "Delivered",
+    status: "Pending",
   },
   {
     id: "#ORD-1001",
@@ -83,7 +83,7 @@ const ordersData = [
     time: "10:24 AM",
     payment: "Paid",
     amount: 48,
-    status: "Delivered",
+    status: "Pending",
   },
   {
     id: "#ORD-1013",
@@ -97,7 +97,7 @@ const ordersData = [
     time: "04:45 PM",
     payment: "Paid",
     amount: 78,
-    status: "Delivered",
+    status: "Pending",
   },
   {
     id: "#ORD-1008",
@@ -111,7 +111,7 @@ const ordersData = [
     time: "02:36 PM",
     payment: "Pending",
     amount: 55,
-    status: "Delivered",
+    status: "Pending",
   },
   {
     id: "#ORD-1010",
@@ -125,7 +125,7 @@ const ordersData = [
     time: "01:20 PM",
     payment: "Paid",
     amount: 110,
-    status: "Delivered",
+    status: "Pending",
   },
   {
     id: "#ORD-1003",
@@ -139,7 +139,7 @@ const ordersData = [
     time: "04:32 PM",
     payment: "Pending",
     amount: 72,
-    status: "Delivered",
+    status: "Pending",
   },
   {
     id: "#ORD-1016",
@@ -153,7 +153,7 @@ const ordersData = [
     time: "10:40 AM",
     payment: "Paid",
     amount: 145,
-    status: "Delivered",
+    status: "Pending",
   },
   {
     id: "#ORD-1006",
@@ -167,7 +167,7 @@ const ordersData = [
     time: "11:22 AM",
     payment: "Paid",
     amount: 64,
-    status: "Delivered",
+    status: "Pending",
   },
   {
     id: "#ORD-1012",
@@ -181,7 +181,7 @@ const ordersData = [
     time: "03:05 PM",
     payment: "Paid",
     amount: 58,
-    status: "Delivered",
+    status: "Pending",
   },
   {
     id: "#ORD-1005",
@@ -195,7 +195,7 @@ const ordersData = [
     time: "03:45 PM",
     payment: "Paid",
     amount: 120,
-    status: "Delivered",
+    status: "Pending",
   },
   {
     id: "#ORD-1014",
@@ -209,7 +209,7 @@ const ordersData = [
     time: "09:50 AM",
     payment: "Pending",
     amount: 135,
-    status: "Delivered",
+    status: "Pending",
   },
   {
     id: "#ORD-1009",
@@ -223,27 +223,22 @@ const ordersData = [
     time: "05:12 PM",
     payment: "Paid",
     amount: 88,
-    status: "Delivered",
+    status: "Pending",
   },
 ];
-
-export default function DeleveredOrders() {
+export default function PendingOrders() {
   const [Search, setSearch] = useState("");
   const [Payment, setPayment] = useState("All Payments");
   const [Orders, setOrders] = useState(ordersData);
   const [Sort, setSort] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [OpenMenu, setOpenMenu] = useState(null);
-
   const ordersPerPage = 10;
 
-  // Only Delivered Orders
-  const DeliveredOrders = Orders.filter(
-    (order) => order.status === "Delivered",
-  );
+  // Only Pending Orders
+  const PendingOrders = Orders.filter((order) => order.status === "Pending");
 
   // Filter + Sort
-  const FilteredOrders = DeliveredOrders.filter((order) => {
+  const FilteredOrders = PendingOrders.filter((order) => {
     const searchValue = Search.toLowerCase();
 
     const matchSearch =
@@ -265,11 +260,22 @@ export default function DeleveredOrders() {
       return Number(a.id.replace(/\D/g, "")) - Number(b.id.replace(/\D/g, ""));
     }
 
-    if (Sort === "amount-asc") return a.amount - b.amount;
-    if (Sort === "amount-desc") return b.amount - a.amount;
+    if (Sort === "amount-asc") {
+      return a.amount - b.amount;
+    }
+
+    if (Sort === "amount-desc") {
+      return b.amount - a.amount;
+    }
 
     return 0;
   });
+
+  // Reset page when filter changes
+  // useEffect(() => {
+  //   setCurrentPage(1);
+  //   setOpenMenu(null);
+  // }, [Search, Payment, Sort]);
 
   // Pagination
   const totalPages = Math.ceil(FilteredOrders.length / ordersPerPage);
@@ -289,17 +295,18 @@ export default function DeleveredOrders() {
   // Action Handlers
   const handleViewOrder = (id) => {
     console.log("View Order:", id);
-    setOpenMenu(null);
+  };
+
+  const handleUpdateStatus = (id) => {
+    console.log("Update Status:", id);
   };
 
   const handleContactCustomer = (id) => {
     console.log("Contact Customer:", id);
-    setOpenMenu(null);
   };
 
   const handlePrintInvoice = (id) => {
     console.log("Print Invoice:", id);
-    setOpenMenu(null);
   };
 
   const handleCancelOrder = (id) => {
@@ -317,12 +324,11 @@ export default function DeleveredOrders() {
       {/* PAGE HEADER */}
       <div className="shrink-0 mb-6">
         <h1 className="text-2xl font-semibold text-[var(--eerie-black)]">
-          Delivered Orders
+          Pending Orders
         </h1>
 
         <p className="text-sm text-[var(--sonic-silver)] mt-1">
-          View and manage orders that have been successfully delivered to
-          customers.
+          Manage and process orders that are waiting for fulfillment.
         </p>
       </div>
 
@@ -337,22 +343,16 @@ export default function DeleveredOrders() {
             <input
               type="text"
               value={Search}
-              onChange={(e) => {
-                setSearch(e.target.value);
-                setCurrentPage(1);
-              }}
-              placeholder="Search delivered orders by ID, customer or product..."
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search pending orders by ID, customer or product..."
               className="w-full h-11 pl-11 pr-4 border border-[var(--cultured)] rounded-lg outline-none text-sm text-[var(--eerie-black)] focus:border-[var(--primary)]"
             />
           </div>
 
-          {/* Payment Filter */}
+          {/* Payment */}
           <select
             value={Payment}
-            onChange={(e) => {
-              setPayment(e.target.value);
-              setCurrentPage(1);
-            }}
+            onChange={(e) => setPayment(e.target.value)}
             className="w-[170px] h-11 px-3 border border-[var(--cultured)] rounded-lg outline-none text-sm text-[var(--eerie-black)] bg-[var(--white)] focus:border-[var(--primary)]"
           >
             <option>All Payments</option>
@@ -364,10 +364,7 @@ export default function DeleveredOrders() {
           {/* Sort */}
           <select
             value={Sort}
-            onChange={(e) => {
-              setSort(e.target.value);
-              setCurrentPage(1);
-            }}
+            onChange={(e) => setSort(e.target.value)}
             className="w-[160px] h-11 px-3 border border-[var(--cultured)] rounded-lg outline-none text-sm text-[var(--eerie-black)] bg-[var(--white)] focus:border-[var(--primary)]"
           >
             <option value="">Sort Orders</option>
@@ -382,44 +379,53 @@ export default function DeleveredOrders() {
         <div className="flex-1 min-h-0 overflow-hidden border-t border-[var(--cultured)]">
           <div className="h-full overflow-auto">
             <table className="w-full min-w-[1100px] border-collapse">
+              {/* TABLE HEADER */}
               <thead className="sticky top-0 z-10 bg-[var(--white)]">
                 <tr className="bg-[var(--cultured)]/40 border-b border-[var(--cultured)]">
                   <th className="text-left px-4 py-4 text-xs font-semibold text-[var(--sonic-silver)] uppercase">
                     Order
                   </th>
+
                   <th className="text-left px-4 py-4 text-xs font-semibold text-[var(--sonic-silver)] uppercase">
                     Customer
                   </th>
+
                   <th className="text-left px-4 py-4 text-xs font-semibold text-[var(--sonic-silver)] uppercase">
                     Product
                   </th>
+
                   <th className="text-left px-4 py-4 text-xs font-semibold text-[var(--sonic-silver)] uppercase">
                     Date
                   </th>
+
                   <th className="text-left px-4 py-4 text-xs font-semibold text-[var(--sonic-silver)] uppercase">
                     Payment
                   </th>
+
                   <th className="text-left px-4 py-4 text-xs font-semibold text-[var(--sonic-silver)] uppercase">
                     Amount
                   </th>
+
                   <th className="text-left px-4 py-4 text-xs font-semibold text-[var(--sonic-silver)] uppercase">
                     Status
                   </th>
+
                   <th className="text-right px-4 py-4 text-xs font-semibold text-[var(--sonic-silver)] uppercase">
                     Actions
                   </th>
                 </tr>
               </thead>
 
+              {/* TABLE BODY */}
               <tbody>
                 {currentOrders.length > 0 ? (
                   currentOrders.map((order) => (
                     <tr
                       key={order.id}
-                      className="border-b border-[var(--cultured)] last:border-b-0 hover:bg-[var(--cultured)]/20 transition"
+                      className="relative border-b border-[var(--cultured)] last:border-b-0 hover:bg-[var(--cultured)]/20 transition"
                     >
                       {/* Order */}
-                      <td className="px-4 py-4">
+                      <td className="px-4">
                         <p className="text-xs text-[var(--sonic-silver)]">
                           {order.id}
                         </p>
@@ -431,6 +437,7 @@ export default function DeleveredOrders() {
                           <h3 className="text-sm font-medium text-[var(--eerie-black)]">
                             {order.customer}
                           </h3>
+
                           <p className="text-xs text-[var(--sonic-silver)] mt-1">
                             {order.email}
                           </p>
@@ -452,6 +459,7 @@ export default function DeleveredOrders() {
                             <h3 className="text-sm font-medium text-[var(--eerie-black)]">
                               {order.product}
                             </h3>
+
                             <p className="text-xs text-[var(--sonic-silver)] mt-1">
                               Qty: {order.quantity}
                             </p>
@@ -464,6 +472,7 @@ export default function DeleveredOrders() {
                         <p className="text-sm text-[var(--eerie-black)]">
                           {order.date}
                         </p>
+
                         <p className="text-[11px] text-[var(--sonic-silver)] mt-0.5">
                           {order.time}
                         </p>
@@ -498,69 +507,74 @@ export default function DeleveredOrders() {
 
                       {/* Status */}
                       <td className="px-4 py-4">
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-100 text-green-600 text-xs font-medium">
-                          <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span>
-                          {order.status}
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-100 text-orange-600 text-xs font-medium">
+                          <span className="w-1.5 h-1.5 rounded-full bg-orange-500"></span>
+                          Pending
                         </span>
                       </td>
 
                       {/* Action Menu */}
-                      <td className="relative px-4 py-4 text-right">
-                        <div className="relative inline-block">
+                      <td className="relative group flex justify-end px-4">
+                        <button
+                          type="button"
+                          className="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-[var(--cultured)] transition"
+                          title="More"
+                        >
+                          <i className="bi bi-three-dots-vertical text-lg"></i>
+                        </button>
+
+                        <div className="absolute right-0 top-10 z-30 w-48 bg-[var(--white)] border border-[var(--cultured)] rounded-lg shadow-lg p-1 hidden group-hover:block">
+                          {/* View Order */}
                           <button
                             type="button"
-                            onClick={() =>
-                              setOpenMenu(
-                                OpenMenu === order.id ? null : order.id,
-                              )
-                            }
-                            className="w-9 h-9 inline-flex items-center justify-center rounded-lg hover:bg-[var(--cultured)] transition"
-                            title="More actions"
+                            onClick={() => handleViewOrder(order.id)}
+                            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-md text-sm text-[var(--eerie-black)] hover:bg-[var(--cultured)] transition"
                           >
-                            <i className="bi bi-three-dots-vertical text-lg"></i>
+                            <i className="bi bi-eye"></i>
+                            View Order
                           </button>
 
-                          {OpenMenu === order.id && (
-                            <div className="absolute right-0 top-10 z-30 w-48 bg-[var(--white)] border border-[var(--cultured)] rounded-lg shadow-lg p-1">
-                              <button
-                                type="button"
-                                onClick={() => handleViewOrder(order.id)}
-                                className="w-full flex items-center gap-3 px-3 py-2.5 rounded-md text-sm text-[var(--eerie-black)] hover:bg-[var(--cultured)] transition"
-                              >
-                                <i className="bi bi-eye"></i>
-                                View Order
-                              </button>
+                          {/* Update Status */}
+                          <button
+                            type="button"
+                            onClick={() => handleUpdateStatus(order.id)}
+                            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-md text-sm text-[var(--eerie-black)] hover:bg-[var(--cultured)] transition"
+                          >
+                            <i className="bi bi-arrow-repeat"></i>
+                            Update Status
+                          </button>
 
-                              <button
-                                type="button"
-                                onClick={() => handleContactCustomer(order.id)}
-                                className="w-full flex items-center gap-3 px-3 py-2.5 rounded-md text-sm text-[var(--eerie-black)] hover:bg-[var(--cultured)] transition"
-                              >
-                                <i className="bi bi-chat-dots"></i>
-                                Contact Customer
-                              </button>
+                          {/* Contact Customer */}
+                          <button
+                            type="button"
+                            onClick={() => handleContactCustomer(order.id)}
+                            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-md text-sm text-[var(--eerie-black)] hover:bg-[var(--cultured)] transition"
+                          >
+                            <i className="bi bi-chat-dots"></i>
+                            Contact Customer
+                          </button>
 
-                              <button
-                                type="button"
-                                onClick={() => handlePrintInvoice(order.id)}
-                                className="w-full flex items-center gap-3 px-3 py-2.5 rounded-md text-sm text-[var(--eerie-black)] hover:bg-[var(--cultured)] transition"
-                              >
-                                <i className="bi bi-printer"></i>
-                                Print Invoice
-                              </button>
+                          {/* Print Invoice */}
+                          <button
+                            type="button"
+                            onClick={() => handlePrintInvoice(order.id)}
+                            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-md text-sm text-[var(--eerie-black)] hover:bg-[var(--cultured)] transition"
+                          >
+                            <i className="bi bi-printer"></i>
+                            Print Invoice
+                          </button>
 
-                              <div className="my-1 border-t border-[var(--cultured)]"></div>
+                          {/* Cancel Order */}
+                          <div className="my-1 border-t border-[var(--cultured)]"></div>
 
-                              <button
-                                type="button"
-                                onClick={() => handleCancelOrder(order.id)}
-                                className="w-full flex items-center gap-3 px-3 py-2.5 rounded-md text-sm text-red-500 hover:bg-red-50 transition"
-                              >
-                                <i className="bi bi-x-circle"></i>
-                                Cancel Order
-                              </button>
-                            </div>
-                          )}
+                          <button
+                            type="button"
+                            onClick={() => handleCancelOrder(order.id)}
+                            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-md text-sm text-red-500 hover:bg-red-50 transition"
+                          >
+                            <i className="bi bi-x-circle"></i>
+                            Cancel Order
+                          </button>
                         </div>
                       </td>
                     </tr>
@@ -571,7 +585,7 @@ export default function DeleveredOrders() {
                       colSpan="8"
                       className="text-center py-12 text-sm text-[var(--sonic-silver)]"
                     >
-                      No delivered orders found.
+                      No pending orders found.
                     </td>
                   </tr>
                 )}
@@ -583,8 +597,8 @@ export default function DeleveredOrders() {
         {/* PAGINATION */}
         <div className="shrink-0 flex items-center justify-between px-1 py-4 border-t border-[var(--cultured)]">
           <p className="text-sm text-[var(--sonic-silver)]">
-            Showing {showingFrom}–{showingTo} of {FilteredOrders.length}{" "}
-            delivered orders
+            Showing {showingFrom}–{showingTo} of {FilteredOrders.length} pending
+            orders
           </p>
 
           <div className="flex items-center gap-1">

@@ -139,7 +139,6 @@ export default function AllProduct() {
         ...product,
         id: Products.length + 1,
       };
-      console.log("Duplicate Product:", newProduct);
       setProducts([...Products, newProduct]);
     }
   };

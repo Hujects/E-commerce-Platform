@@ -4,7 +4,6 @@ import AllProduct from "./dashboard/AllProduct";
 import AddProduct from "./dashboard/AddProduct";
 import Categories from "./dashboard/Categories";
 import AllOrder from "./dashboard/AllOrders";
-import PendingOrder from "./dashboard/PendingOrder";
 import ProcessingOrder from "./dashboard/ProcessingOrder";
 import ShippedOrder from "./dashboard/ShippedProduct";
 import DeliveredOrders from "./dashboard/DeliveredOrders";
@@ -15,6 +14,7 @@ import Discounts from "./dashboard/Discounts";
 import MyStore from "./dashboard/MyStore";
 import Setting from "./dashboard/Setting";
 import Inventory from "./dashboard/Inventory";
+import PendingOrders from "./dashboard/PendingOrders";
 
 export default function SellerDashboard() {
   const [MenuOpen, setMenuOpen] = useState([false, false]);
@@ -370,7 +370,7 @@ export default function SellerDashboard() {
         {CurrentContent === "category" && <Categories />}
         {CurrentContent === "inventory" && <Inventory />}
         {CurrentContent === "allorder" && <AllOrder />}
-        {CurrentContent === "pendingorder" && <PendingOrder />}
+        {CurrentContent === "pendingorder" && <PendingOrders />}
         {CurrentContent === "processingorder" && <ProcessingOrder />}
         {CurrentContent === "shippedorder" && <ShippedOrder />}
         {CurrentContent === "deliveredorder" && <DeliveredOrders />}
