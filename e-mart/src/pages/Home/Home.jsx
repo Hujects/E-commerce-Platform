@@ -18,10 +18,13 @@ function Home() {
             <Header />
             <Navbar />
             <Herobg />
-            <div className='w-full flex justify-center pb-10'>
-                <div className='flex gap-5 pb-4 justify-between overflow-x-auto custom-scrollbar items-start w-[90%] mx-auto'>
+            <div className='w-full max-w-[var(--max-width)] mx-auto flex justify-center pb-10 mt-5'>
+                <div className='flex gap-5 pb-4 justify-between overflow-x-auto snap-x snap-mandatory custom-scrollbar items-start w-[90%] mx-auto'>
                     {titleCards.map((card, index) => (
-                        <TitleCard key={index} icon={card.icon} name={card.name} count={card.count} />
+                        <div className="snap-start shrink-0" key={index}>
+                              <TitleCard key={index} icon={card.icon} name={card.name} count={card.count} />
+                          </div>
+                        
                     ))}
                 </div>
             </div>

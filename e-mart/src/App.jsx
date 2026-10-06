@@ -11,11 +11,13 @@ import ResetSuccess from "./pages/Login Signup ResetPassword/ResetPassword/Reset
 import SetNewPassword from "./pages/Login Signup ResetPassword/ResetPassword/SetNewPassword";
 import ViewCart from "./pages/Cart/ViewCart";
 import SellerDashboard from "./pages/SellerDashboard/SellerDashboard";
+import Contact from "./pages/Contact/Contact";
 function App() {
   return (
     <div className="min-h-screen mx-auto">
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/contact_us" element={<Contact />} />
         <Route path="/cetegory" element={<Cetegory />} />
         <Route path="/product" element={<Product />} />
         <Route path="/cetegory" element={<Cetegory />} />
@@ -31,5 +33,4 @@ function App() {
     </div>
   );
 }
-
 export default App;

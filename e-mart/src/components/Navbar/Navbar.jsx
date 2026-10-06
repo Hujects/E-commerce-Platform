@@ -1,3 +1,5 @@
+import {Link} from "react-router-dom";
+
 function Navbar() {
   return (
     <div className="navbar flex justify-center gap-10 text-lg font-semibold py-3.75">
@@ -20,10 +22,10 @@ function Navbar() {
         <a href="#perfume">Perfume</a>
       </div>
       <div className="nav-hover text-[length:var(--fs-6)] font-semibold uppercase">
-        <a href="#hotOffer">Hot Offers</a>
+        <Link to="/contact_us">Contact Us</Link>
       </div>
       <div className="about nav-hover text-[length:var(--fs-6)] font-semibold uppercase">
-        <a href="#about">About</a>
+        <a href="#about">About US</a>
       </div>
     </div>
   );
