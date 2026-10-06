@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Signup() {
   const [showpassword, setshowpassword] = useState(false);
@@ -7,14 +8,15 @@ export default function Signup() {
       <main className="w-full max-w-[850px]">
         <div className="w-full min-h-[724px] bg-[var(--white)] rounded-2xl overflow-hidden shadow-lg flex">
           {/* Left Side */}
-          <div
-            className="w-[35%] bg-no-repeat text-[var(--white)] p-8 flex flex-col justify-between"
-            style={{
-              backgroundImage: "url('/yellobg.png')",
-            }}
-          >
+          <div className="relative w-[35%] bg-no-repeat text-[var(--white)] p-8 flex flex-col justify-between">
+            {/* background image */}
+            <img
+              src="/yellobg.png"
+              alt="sign up page Background"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
             {/* Content */}
-            <div className="">
+            <div className="relative z-10">
               <h1 className="text-4xl font-[var(--weight-700)] mb-3">Anon</h1>
 
               <p className="text-[length:var(--fs-7)] leading-6">
@@ -24,7 +26,7 @@ export default function Signup() {
               </p>
             </div>
 
-            <div className="">
+            <div className="relative z-10">
               <div className="w-10 h-[2px] bg-[var(--white)] mb-5"></div>
 
               <p className="text-sm leading-6">
@@ -161,14 +163,15 @@ export default function Signup() {
                       href="#"
                       className="text-[length:var(--fs-8)] text-[var(--yello-bg)] font-[var(--weight-600)] hover:underline"
                     >
-                      Terms & Conditions {" "}
+                      Terms & Conditions{" "}
                     </a>
                     and
                     <a
                       href="#"
                       className="text-[length:var(--fs-8)] text-[var(--yello-bg)] font-[var(--weight-600)] hover:underline"
                     >
-                     {" "}Privacy Policy
+                      {" "}
+                      Privacy Policy
                     </a>
                   </span>
                 </label>
@@ -205,12 +208,12 @@ export default function Signup() {
             {/* Login */}
             <p className="text-center mt-7 text-[length:var(--fs-8)] text-[var(--sonic-silver)]">
               Already have an account?{" "}
-              <a
-                href="#"
+              <Link
+                to="/login"
                 className="text-[var(--yello-bg)] font-[var(--weight-600)] hover:underline"
               >
                 Login
-              </a>
+              </Link>
             </p>
           </div>
         </div>
