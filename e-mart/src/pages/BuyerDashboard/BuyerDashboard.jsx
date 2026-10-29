@@ -7,4 +7,4 @@ function BuyerDashboard() {
     )
 }
 
-export default BuyerDashboard
+export default BuyerDashboard;

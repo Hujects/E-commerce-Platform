@@ -5,6 +5,12 @@ import Cetegory from "./pages/Cetegory/Cetegory";
 import Product from "./pages/Product/Product";
 import Login from "./pages/Login Signup ResetPassword/Login";
 import Signup from "./pages/Login Signup ResetPassword/Signup";
+import ResetPassword from "./pages/Login Signup ResetPassword/ResetPassword/ResetPassword";
+import CheckEmail from "./pages/Login Signup ResetPassword/ResetPassword/CheckEmail";
+import ResetSuccess from "./pages/Login Signup ResetPassword/ResetPassword/ResetSuccese";
+import SetNewPassword from "./pages/Login Signup ResetPassword/ResetPassword/SetNewPassword";
+import ViewCart from "./pages/Cart/ViewCart";
+import SellerDashboard from "./pages/SellerDashboard/SellerDashboard";
 import Contact from "./pages/Contact/Contact";
 function App() {
   return (
@@ -17,6 +23,12 @@ function App() {
         <Route path="/cetegory" element={<Cetegory />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/check-email" element={<CheckEmail />} />
+        <Route path="/reset-success" element={<ResetSuccess />} />
+        <Route path="/set-new-password" element={<SetNewPassword />} />
+        <Route path="/my-cart" element={<ViewCart />} />
+        <Route path="/seller-dashboard" element={<SellerDashboard />} />
       </Routes>
     </div>
   );
